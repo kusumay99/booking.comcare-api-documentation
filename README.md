@@ -130,7 +130,7 @@ Request Body
 ```json
 {
     "email": "kusumayekula0191@gmail.com",
-    "OTP": "192418",
+    "otp": "192418",
     "password": "Nissy@123"
 }
 
