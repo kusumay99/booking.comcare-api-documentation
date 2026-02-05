@@ -12,15 +12,16 @@ https://api.nursingcarebooking.com
 
 ### 1. `POST /api/auth/register` — Register User
 
-Register a profile with required name, email and password after that user will get the OTP.
+Register a profile with required name, email,role and password after that user will get the OTP.
 
 Request Body
 
 ```json
 {
     "email": "kusumayekula0191@gmail.com",
-    "password": "Kussu@123",
-    "name": "Kusuma"
+    "password": "Kusuma@123",
+    "name": "Kusuma",
+    "role": "provider"
 }
 
 Success Response
@@ -38,9 +39,7 @@ Request Body
 
 ```json
 {
-    "email": "kusumayekula0191@gmail.com",
-    "password": "Kussu@123",
-    "name": "Kusuma"
+    "email": "kusumayekula0191@gmail.com"
 }
 
 Success Response
@@ -59,18 +58,19 @@ Request Body
 ```json
 {
     "email": "kusumayekula0191@gmail.com",
-    "otp": "712294"
+    "otp": "919484"
 }
 
 Success Response
 
 {
-    "message": "User registered successfully",
-    "user": {
-        "id": "6981a62454ab5d9fd4d57691",
+    "message": "Account created successfully",
+    "account": {
+        "id": "698422fd71003a7641cc84af",
         "name": "Kusuma",
         "email": "kusumayekula0191@gmail.com",
-        "userId": "257"
+        "userId": 3897,
+        "role": "provider"
     }
 }
 
@@ -85,21 +85,23 @@ Request Body
 ```json
 {
     "email": "kusumayekula0191@gmail.com",
-    "password": "Kussu@123"
+    "password": "Kusuma@123"
 }
 
 Success Response
 
 {
     "message": "Login successful",
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTgxYTYyNDU0YWI1ZDlmZDRkNTc2OTEiLCJ1c2VyRW1haWwiOiJrdXN1bWF5ZWt1bGEwMTkxQGdtYWlsLmNvbSIsImlhdCI6MTc3MDEwNDQ3MiwiZXhwIjoxNzcwMTkwODcyfQ.F7dUd1fW2DiVTaswU-M54SJJKlqN8gK5MSQt-ig5jv0",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODQyMmZkNzEwMDNhNzY0MWNjODRhZiIsImVtYWlsIjoia3VzdW1heWVrdWxhMDE5MUBnbWFpbC5jb20iLCJyb2xlIjoicHJvdmlkZXIiLCJpYXQiOjE3NzAyNjc0ODgsImV4cCI6MTc3MDM1Mzg4OH0.QHOjv1VXya_sL18XRx3XxnWm_MLxlO3eOWPke-2A6vw",
     "user": {
-        "id": "6981a62454ab5d9fd4d57691",
+        "id": "698422fd71003a7641cc84af",
         "name": "Kusuma",
         "email": "kusumayekula0191@gmail.com",
-        "userId": "257"
+        "userId": 3897,
+        "role": "provider"
     }
 }
+
 ```
 
 ### 5. `POST /api/auth/forgot-password` — Forgot Password
@@ -141,8 +143,7 @@ Success Response
 }
 
 ```
-
-### 7. `DELETE /api/auth/delete-user` — Delete User
+### 7. ` /api/auth/delete` — Delete User
 
 Deleting profile by UserId.
 
@@ -150,14 +151,222 @@ Request Body
 
 ```json
 {
-    "userId": "257"
+    "userId": "3897"
 }
 
 Success Response
 
 {
     "message": "User deleted successfully",
-    "userId": "257"
+    "userId": "3897"
+}
+
+```
+
+### 8. `POST /api/provider/create` — Creating provider profile
+
+creating provider profile with provider details .
+
+Request Body
+
+```json
+{
+  "userId": 3592,
+  "typeOfCare": "Domiciliary Care",
+  "location": "Hyderabad",
+  "serviceRadiusKm": 10,
+  "services": ["Elder Care", "Home Nursing"],
+  "pricing": {
+    "hourly": 300,
+    "daily": 2000,
+    "monthly": 45000
+  },
+  "availability": {
+    "monday": "9AM-6PM",
+    "tuesday": "9AM-6PM"
+  },
+  "credentials": ["Nursing Certificate", "CPR Certified"]
+}
+
+
+Success Response
+
+{
+    "success": true,
+    "message": "Provider profile created successfully",
+    "provider": {
+        "pricing": {
+            "hourly": 300,
+            "daily": 2000,
+            "monthly": 45000
+        },
+        "_id": "698422fd71003a7641cc84af",
+        "userId": 3897,
+        "name": "Kusuma",
+        "email": "kusumayekula0191@gmail.com",
+        "role": "provider",
+        "typeOfCare": "Domiciliary Care",
+        "location": "Hyderabad",
+        "phone": "",
+        "avatar": "",
+        "gallery": [],
+        "password": "$2b$10$6j9LsZtino41sI7NV.Ajl.eJL6UAH0PWrD6H7WweuGwOalFbuZSg6",
+        "services": [
+            "Elder Care",
+            "Home Nursing"
+        ],
+        "credentials": [
+            "Nursing Certificate",
+            "CPR Certified"
+        ],
+        "isVerified": true,
+        "createdAt": "2026-02-05T04:56:29.874Z",
+        "updatedAt": "2026-02-05T05:03:07.106Z",
+        "availability": {
+            "monday": "9AM-6PM",
+            "tuesday": "9AM-6PM"
+        },
+        "serviceRadiusKm": 7
+    }
+}
+
+```
+### 9. `post /api/provider/profile/userid` — Getting provider profile
+
+Getting provider profile by userId.
+
+Request Body
+
+```json
+{
+    "userId": "3897"
+}
+
+Success Response
+
+{
+    "success": true,
+    "provider": {
+        "pricing": {
+            "hourly": 300,
+            "daily": 2000,
+            "monthly": 45000
+        },
+        "_id": "698422fd71003a7641cc84af",
+        "userId": 3897,
+        "name": "Kusuma",
+        "email": "kusumayekula0191@gmail.com",
+        "role": "provider",
+        "typeOfCare": "Domiciliary Care",
+        "location": "Hyderabad",
+        "phone": "",
+        "avatar": "",
+        "gallery": [],
+        "services": [
+            "Elder Care",
+            "Home Nursing"
+        ],
+        "credentials": [
+            "Nursing Certificate",
+            "CPR Certified"
+        ],
+        "isVerified": true,
+        "createdAt": "2026-02-05T04:56:29.874Z",
+        "updatedAt": "2026-02-05T05:03:07.106Z",
+        "availability": {
+            "monday": "9AM-6PM",
+            "tuesday": "9AM-6PM"
+        },
+        "serviceRadiusKm": 7
+    }
+}
+
+```
+### 10. `PUT /api/provider/profile` — Updating provider profile 
+
+Updating provider profile by UserId.
+
+Request Body
+
+```json
+{
+  "userId": 3897,
+  "typeOfCare": "Domiciliary Care",
+  "location": "Hyderabad, Madhapur",
+  "serviceRadiusKm": 8,
+  "services": ["Elder Care", "Home Nursing"],
+  "pricing": {
+    "hourly": 300,
+    "daily": 2000,
+    "monthly": 45000
+  },
+  "availability": {
+    "monday": "9AM-6PM",
+    "tuesday": "9AM-6PM"
+  },
+  "credentials": ["Nursing Certificate", "CPR Certified"]
+}
+
+
+Success Response
+
+{
+    "success": true,
+    "message": "Provider profile updated successfully",
+    "provider": {
+        "pricing": {
+            "hourly": 300,
+            "daily": 2000,
+            "monthly": 45000
+        },
+        "_id": "698422fd71003a7641cc84af",
+        "userId": 3897,
+        "name": "Kusuma",
+        "email": "kusumayekula0191@gmail.com",
+        "role": "provider",
+        "typeOfCare": "Domiciliary Care",
+        "location": "Hyderabad, Madhapur",
+        "phone": "",
+        "avatar": "",
+        "gallery": [],
+        "password": "$2b$10$6j9LsZtino41sI7NV.Ajl.eJL6UAH0PWrD6H7WweuGwOalFbuZSg6",
+        "services": [
+            "Elder Care",
+            "Home Nursing"
+        ],
+        "credentials": [
+            "Nursing Certificate",
+            "CPR Certified"
+        ],
+        "isVerified": true,
+        "createdAt": "2026-02-05T04:56:29.874Z",
+        "updatedAt": "2026-02-05T05:09:06.306Z",
+        "availability": {
+            "monday": "9AM-6PM",
+            "tuesday": "9AM-6PM"
+        },
+        "serviceRadiusKm": 8
+    }
+}
+
+```
+### 11. ` /api/auth/delete` — Delete Provider Profile
+
+Deleting provider profile by UserId.
+
+Request Body
+
+```json
+{
+  "userId": 3897
+}
+
+Success Response
+
+{
+    "success": true,
+    "message": "Provider profile deleted successfully",
+    "deletedUserId": 3897
 }
 
 ```
