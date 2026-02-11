@@ -487,3 +487,36 @@ Success Response
 }
 
 ```
+
+### 15. `Put /api/booking/upcoming` — Getting upcoming booking
+
+It is for upcoming booking
+
+Request Body
+
+```json
+
+Success Response
+
+{
+    "success": true,
+    "count": 1,
+    "bookings": [
+        {
+            "_id": "698c4acae37c0391a322197e",
+            "bookingId": 4,
+            "userId": 888,
+            "providerId": 4283,
+            "serviceType": "Dementia Care",
+            "appointmentDate": "2026-02-15T10:00:00.000Z",
+            "status": "Accepted",
+            "notes": "Need care for 2 hours",
+            "rejectionReason": "",
+            "createdAt": "2026-02-11T09:24:26.816Z",
+            "updatedAt": "2026-02-11T09:38:48.748Z",
+            "__v": 0
+        }
+    ]
+}
+```
+
