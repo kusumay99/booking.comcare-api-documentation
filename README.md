@@ -79,7 +79,7 @@ Success Response
 
 ```
 
-### 4. `POST /api/auth/login` — Login User
+### 4. `POST /api/auth/login` — Login
 
 Login profile with required email and password and we will get that profile as well.
 
@@ -149,7 +149,7 @@ Success Response
 }
 
 ```
-### 7. ` /api/auth/delete` — Delete User
+### 7. ` /api/auth/delete` — Delete
 
 If login profile is user profile we can delete profile by userId or it is provider we need to give providerId for deleting that login profile.
 
@@ -244,7 +244,7 @@ Success Response
     }
 }
 ```
-### 9. `post /api/provider/profile/providerId` — Getting provider profile
+### 9. `post /api/provider/profile/providerId` — Getting provider profile by providerId
 
 Getting provider profile by providerId. For getting profile we need to give access token as a authorization bearer. 
 
