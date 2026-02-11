@@ -595,3 +595,116 @@ Success Response
 
 ```
 
+# Review Endpoints
+
+### 17. `POST /api/review/add` — Create Review by Booking Id
+
+This is for giiving rating along with comment for the care provider. Service User access token as a Authorization Token. 
+
+Request Body
+
+```json
+
+{
+  "bookingId": 4,
+  "rating": 5,
+  "comment": "Excellent service and very professional."
+}
+
+
+
+Success Response
+
+{
+    "success": true,
+    "message": "Review submitted successfully",
+    "review": {
+        "reviewId": 2,
+        "bookingId": 4,
+        "userId": 888,
+        "providerId": 4283,
+        "rating": 5,
+        "comment": "Excellent service and very professional.",
+        "isFlagged": false,
+        "flagReason": "",
+        "isHidden": false,
+        "_id": "698cdd8fe37c0391a3221a02",
+        "createdAt": "2026-02-11T19:50:39.846Z",
+        "updatedAt": "2026-02-11T19:50:39.846Z",
+        "__v": 0
+    }
+}
+
+```
+
+### 18. `POST /api/review/provider` — Provider can see theire reviews
+
+This is for giiving rating along with comment for the care provider.
+
+Request Body
+
+```json
+
+
+Success Response
+
+{
+    "success": true,
+    "count": 1,
+    "reviews": [
+        {
+            "_id": "698cdd8fe37c0391a3221a02",
+            "reviewId": 2,
+            "bookingId": 4,
+            "userId": 888,
+            "providerId": 4283,
+            "rating": 5,
+            "comment": "Excellent service and very professional.",
+            "isFlagged": false,
+            "flagReason": "",
+            "isHidden": false,
+            "createdAt": "2026-02-11T19:50:39.846Z",
+            "updatedAt": "2026-02-11T19:50:39.846Z",
+            "__v": 0
+        }
+    ]
+}
+
+```
+
+### 19. `PUT /api/review/flag` — Provider can flag the review 
+
+This is for giiving rating along with comment for the care provider. Provider Access token as a bearer token. 
+
+Request Body
+
+```json
+
+{
+  "reviewId": 2,
+  "reason": "This review contains false information"
+}
+
+Success Response
+
+{
+    "success": true,
+    "message": "Review flagged successfully",
+    "review": {
+        "_id": "698cdd8fe37c0391a3221a02",
+        "reviewId": 2,
+        "bookingId": 4,
+        "userId": 888,
+        "providerId": 4283,
+        "rating": 5,
+        "comment": "Excellent service and very professional.",
+        "isFlagged": true,
+        "flagReason": "This review contains false information",
+        "isHidden": false,
+        "createdAt": "2026-02-11T19:50:39.846Z",
+        "updatedAt": "2026-02-11T20:07:57.256Z",
+        "__v": 0
+    }
+}
+
+```
