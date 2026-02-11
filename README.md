@@ -169,9 +169,11 @@ Success Response
 
 ```
 
+# Provider Endpoints
+
 ### 8. `POST /api/provider/create` — Creating provider profile
 
-creating provider profile with provider details .
+creating provider profile with provider details with form data .
 
 Request Body
 
@@ -353,7 +355,87 @@ Success Response
 }
 
 ```
-### 11. `DELETE /api/auth/profile` — Delete Provider Profile
+### 11. `DELETE /api/provider/profile` — Delete Provider Profile
+
+Deleting provider profile by UserId.
+
+Request Body
+
+```json
+{
+  "profileId": 4283
+}
+
+Success Response
+
+{
+    "success": true,
+    "message": "Provider profile deleted successfully",
+    "deletedUserId": 3897
+}
+
+```
+
+# Booking Endpoints
+
+### 12. `POST /api/booking/create` — Delete Provider Profile
+
+create booking by providerId. To this we need to give user Access Token as a authorization Bearer.
+
+Request Body
+
+```json
+{
+  "profileId": 4283
+}
+
+Success Response
+
+{
+    "success": true,
+    "message": "Provider profile deleted successfully",
+    "deletedUserId": 3897
+}
+
+```### 11. `DELETE /api/auth/profile` — Delete Provider Profile
+
+Deleting provider profile by UserId.
+
+Request Body
+
+```json
+{
+  "profileId": 4283
+}
+
+Success Response
+
+{
+    "success": true,
+    "message": "Provider profile deleted successfully",
+    "deletedUserId": 3897
+}
+
+```### 11. `DELETE /api/auth/profile` — Delete Provider Profile
+
+Deleting provider profile by UserId.
+
+Request Body
+
+```json
+{
+  "profileId": 4283
+}
+
+Success Response
+
+{
+    "success": true,
+    "message": "Provider profile deleted successfully",
+    "deletedUserId": 3897
+}
+
+```### 11. `DELETE /api/auth/profile` — Delete Provider Profile
 
 Deleting provider profile by UserId.
 
