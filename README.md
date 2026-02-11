@@ -300,7 +300,7 @@ Success Response
 ```
 ### 10. `PUT /api/provider/profile` — Updating provider profile 
 
-Updating provider profile by UserId.
+Updating provider profile by UserId. 
 
 Request Body
 
@@ -357,7 +357,7 @@ Success Response
 ```
 ### 11. `DELETE /api/provider/profile` — Delete Provider Profile
 
-Deleting provider profile by UserId.
+Deleting provider profile by UserId. Provider access token is the authorized bearer.
 
 Request Body
 
@@ -420,7 +420,7 @@ Success Response
 
 ### 13. `PUT /api/booking/accept` — Accepting Booking
 
-After user booking service user if care provider wants to accept.
+After user booking service user if care provider wants to accept. To accept booking also we need provider access token as a authorization bearer.
 
 Request Body
 
@@ -452,9 +452,9 @@ Success Response
 
 ```
 
-### 14. `Put /api/booking/reject` — Rejecting booking
+### 14. `PUT /api/booking/reject` — Rejecting booking
 
-If anything wrong provider can reject booking along with reason.
+If anything wrong provider can reject booking along with reason. For this we need user Access Token as a authorization Brarer.
 
 Request Body
 
@@ -488,35 +488,110 @@ Success Response
 
 ```
 
-### 15. `Put /api/booking/upcoming` — Getting upcoming booking
+### 15. `PUT /api/booking/cancel` — User cancel booking
 
-It is for upcoming booking
+If user booked services if they want cancel again they can use this 
 
 Request Body
 
 ```json
 
+{
+  "bookingId": 5
+}
+
+
 Success Response
 
 {
     "success": true,
-    "count": 1,
-    "bookings": [
-        {
-            "_id": "698c4acae37c0391a322197e",
-            "bookingId": 4,
-            "userId": 888,
-            "providerId": 4283,
-            "serviceType": "Dementia Care",
-            "appointmentDate": "2026-02-15T10:00:00.000Z",
-            "status": "Accepted",
-            "notes": "Need care for 2 hours",
-            "rejectionReason": "",
-            "createdAt": "2026-02-11T09:24:26.816Z",
-            "updatedAt": "2026-02-11T09:38:48.748Z",
-            "__v": 0
-        }
-    ]
+    "message": "Booking cancelled successfully",
+    "booking": {
+        "_id": "698ccf75e37c0391a32219f1",
+        "bookingId": 5,
+        "userId": 888,
+        "providerId": 4283,
+        "serviceType": "Dementia Care",
+        "appointmentDate": "2026-02-15T10:00:00.000Z",
+        "status": "Cancelled",
+        "notes": "",
+        "rejectionReason": "",
+        "createdAt": "2026-02-11T18:50:29.314Z",
+        "updatedAt": "2026-02-11T18:55:48.177Z",
+        "__v": 0
+    }
 }
+
+```
+
+### 16. `PUT /api/booking/complete` — User cancel booking
+
+If user booked services if they want cancel again they can use this 
+
+Request Body
+
+```json
+
+{
+  "bookingId": 4
+}
+
+
+Success Response
+
+{
+    "success": true,
+    "message": "Booking marked as completed",
+    "booking": {
+        "_id": "698c4acae37c0391a322197e",
+        "bookingId": 4,
+        "userId": 888,
+        "providerId": 4283,
+        "serviceType": "Dementia Care",
+        "appointmentDate": "2026-02-15T10:00:00.000Z",
+        "status": "Completed",
+        "notes": "Need care for 2 hours",
+        "rejectionReason": "",
+        "createdAt": "2026-02-11T09:24:26.816Z",
+        "updatedAt": "2026-02-11T19:14:09.575Z",
+        "__v": 0
+    }
+}
+
+```
+
+### 17. `POST /api/booking/details` — getting details by bookingId
+
+If user booked services if they want cancel again they can use this 
+
+Request Body
+
+```json
+
+{
+  "bookingId": 5
+}
+
+
+Success Response
+
+{
+    "success": true,
+    "booking": {
+        "_id": "698ccf75e37c0391a32219f1",
+        "bookingId": 5,
+        "userId": 888,
+        "providerId": 4283,
+        "serviceType": "Dementia Care",
+        "appointmentDate": "2026-02-15T10:00:00.000Z",
+        "status": "Cancelled",
+        "notes": "",
+        "rejectionReason": "",
+        "createdAt": "2026-02-11T18:50:29.314Z",
+        "updatedAt": "2026-02-11T18:55:48.177Z",
+        "__v": 0
+    }
+}
+
 ```
 
