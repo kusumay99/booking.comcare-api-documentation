@@ -524,7 +524,7 @@ Success Response
 
 ```
 
-### 16. `PUT /api/booking/complete` — User cancel booking
+### 16. `PUT /api/booking/complete` — Provider Completed Booking
 
 If user booked services if they want cancel again they can use this 
 
