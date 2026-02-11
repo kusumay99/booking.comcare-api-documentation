@@ -378,7 +378,7 @@ Success Response
 
 # Booking Endpoints
 
-### 12. `POST /api/booking/create` — Delete Provider Profile
+### 12. `POST /api/booking/create` — Create Booking
 
 create booking by providerId. To this we need to give user Access Token as a authorization Bearer.
 
@@ -386,72 +386,104 @@ Request Body
 
 ```json
 {
-  "profileId": 4283
+  "providerId": 4283,
+  "serviceType": "Dementia Care",
+  "appointmentDate": "2026-02-15T10:00:00.000Z",
+  "notes": "Need care for 2 hours"
 }
+
 
 Success Response
 
 {
     "success": true,
-    "message": "Provider profile deleted successfully",
-    "deletedUserId": 3897
+    "message": "Booking created successfully",
+    "booking": {
+        "bookingId": 4,
+        "userId": 888,
+        "providerId": 4283,
+        "serviceType": "Dementia Care",
+        "appointmentDate": "2026-02-15T10:00:00.000Z",
+        "status": "Pending",
+        "notes": "Need care for 2 hours",
+        "rejectionReason": "",
+        "_id": "698c4acae37c0391a322197e",
+        "createdAt": "2026-02-11T09:24:26.816Z",
+        "updatedAt": "2026-02-11T09:24:26.816Z",
+        "__v": 0
+    }
 }
 
-```### 11. `DELETE /api/auth/profile` — Delete Provider Profile
 
-Deleting provider profile by UserId.
+```
+
+
+### 13. `PUT /api/booking/accept` — Accepting Booking
+
+After user booking service user if care provider wants to accept.
 
 Request Body
 
 ```json
 {
-  "profileId": 4283
+    "bookingId": 4
 }
 
 Success Response
 
 {
     "success": true,
-    "message": "Provider profile deleted successfully",
-    "deletedUserId": 3897
+    "message": "Booking accepted successfully",
+    "booking": {
+        "_id": "698c4acae37c0391a322197e",
+        "bookingId": 4,
+        "userId": 888,
+        "providerId": 4283,
+        "serviceType": "Dementia Care",
+        "appointmentDate": "2026-02-15T10:00:00.000Z",
+        "status": "Accepted",
+        "notes": "Need care for 2 hours",
+        "rejectionReason": "",
+        "createdAt": "2026-02-11T09:24:26.816Z",
+        "updatedAt": "2026-02-11T09:38:48.748Z",
+        "__v": 0
+    }
 }
 
-```### 11. `DELETE /api/auth/profile` — Delete Provider Profile
+```
 
-Deleting provider profile by UserId.
+### 14. `Put /api/booking/reject` — Rejecting booking
+
+If anything wrong provider can reject booking along with reason.
 
 Request Body
 
 ```json
 {
-  "profileId": 4283
+  "bookingId": 3,
+  "reason": "Client cancelled the booking."
 }
+
 
 Success Response
 
 {
     "success": true,
-    "message": "Provider profile deleted successfully",
-    "deletedUserId": 3897
-}
-
-```### 11. `DELETE /api/auth/profile` — Delete Provider Profile
-
-Deleting provider profile by UserId.
-
-Request Body
-
-```json
-{
-  "profileId": 4283
-}
-
-Success Response
-
-{
-    "success": true,
-    "message": "Provider profile deleted successfully",
-    "deletedUserId": 3897
+    "message": "Booking rejected successfully",
+    "booking": {
+        "_id": "698c4acae37c0391a322197e",
+        "bookingId": 4,
+        "userId": 888,
+        "providerId": 4283,
+        "serviceType": "Dementia Care",
+        "appointmentDate": "2026-02-15T10:00:00.000Z",
+        "status": "Rejected",
+        "notes": "Need care for 2 hours",
+        "rejectionReason": "Client cancelled the booking.",
+        "createdAt": "2026-02-11T09:24:26.816Z",
+        "updatedAt": "2026-02-11T09:38:48.748Z",
+        "__v": 0
+    }
 }
 
 ```
