@@ -639,7 +639,7 @@ Success Response
 
 ### 18. `POST /api/review/provider` — Provider can see theire reviews
 
-This is for giiving rating along with comment for the care provider.
+This is for getting review along with comment for the care provider.
 
 Request Body
 
@@ -672,9 +672,9 @@ Success Response
 
 ```
 
-### 19. `PUT /api/review/flag` — Provider can flag the review 
+### 19. `PUT /api/review/flag` — user can flag the review 
 
-This is for giiving rating along with comment for the care provider. Provider Access token as a bearer token. 
+If anything wrong with provider service user can flag the service. Provider Access token as a bearer token. 
 
 Request Body
 
