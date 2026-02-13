@@ -171,209 +171,248 @@ Success Response
 
 # Provider Endpoints
 
-### 8. `POST /api/provider/create` — Creating provider profile
+---
 
-creating provider profile with provider details with form data .
+### 20. `POST /api/provider/create` — Create Provider Profile
 
-Request Body
+Create or complete provider profile with details, images and geo location.  
+This endpoint accepts **multipart/form-data**.  
+Authorization: Provider Access Token (Bearer)
 
-```json
-{
-    "name": "Kusuma",
-    "phone": "9542679596",
-    "location": "Hyderabad, Madhapur",
-    "providerId": 4283,
-    "services": ["Home Nursing"],
-    "serviceRadiusKm": "9",
-    "typeOfCare": "Domiciliary Care",
-    "credentials": ["Nursing Certificate"],
-    "availability": {
-        "monday": "9AM-6PM",
-        "thursday": "9AM-6PM",
-        "wednesday": "9AM-6PM",
-        "tuesday": "9AM-6PM",
-        "friday": "9AM-6PM",    
-        "saturday": "9AM-6PM"
-    },
-    "pricing": {
-        "daily": 2000,
-        "hourly": 300,
-        "monthly": 45000
-    }
-}
-
-
-Success Response
-
-{
-    "success": true,
-    "message": "Provider profile created successfully",
-    "provider": {
-        "pricing": {
-            "hourly": 300,
-            "daily": 2000,
-            "monthly": 45000
-        },
-        "_id": "698c31bc4465bcdf47d01157",
-        "providerId": 4283,
-        "name": "Kusuma Yekula",
-        "email": "kusumayekula0191@gmail.com",
-        "role": "provider",
-        "typeOfCare": "Domiciliary Care",
-        "location": "Hyderabad, Madhapur",
-        "phone": "",
-        "password": "$2b$10$1eg.nYHNrEpeayLEwuHVGuUUlrObA8sm4yl.ofnvwMj8c420s5TEK",
-        "services": [
-            "Home Nursing"
-        ],
-        "credentials": [
-            "Nursing Certificate"
-        ],
-        "isVerified": true,
-        "avatar": "",
-        "pictures": [],
-        "createdAt": "2026-02-11T07:37:32.714Z",
-        "updatedAt": "2026-02-11T07:53:14.677Z",
-        "availability": {
-            "monday": "9AM-6PM",
-            "thursday": "9AM-6PM",
-            "wednesday": "9AM-6PM",
-            "tuesday": "9AM-6PM",
-            "friday": "9AM-6PM",
-            "saturday": "9AM-6PM"
-        },
-        "serviceRadiusKm": 9
-    }
-}
-```
-### 9. `post /api/provider/profile/providerId` — Getting provider profile by providerId
-
-Getting provider profile by providerId. For getting profile we need to give access token as a authorization bearer. 
-
-Request Body
-
-```json
-{
-    "providerId": 4283
-}
-
-Success Response
-
-{
-    "success": true,
-    "provider": {
-        "pricing": {
-            "hourly": 300,
-            "daily": 2000,
-            "monthly": 45000
-        },
-        "_id": "698c31bc4465bcdf47d01157",
-        "providerId": 4283,
-        "name": "Kusuma Yekula",
-        "email": "kusumayekula0191@gmail.com",
-        "role": "provider",
-        "typeOfCare": "Domiciliary Care",
-        "location": "Hyderabad, Madhapur",
-        "phone": "",
-        "services": [
-            "Home Nursing"
-        ],
-        "credentials": [
-            "Nursing Certificate"
-        ],
-        "isVerified": true,
-        "avatar": "",
-        "pictures": [],
-        "createdAt": "2026-02-11T07:37:32.714Z",
-        "updatedAt": "2026-02-11T07:53:14.677Z",
-        "availability": {
-            "monday": "9AM-6PM",
-            "thursday": "9AM-6PM",
-            "wednesday": "9AM-6PM",
-            "tuesday": "9AM-6PM",
-            "friday": "9AM-6PM",
-            "saturday": "9AM-6PM"
-        },
-        "serviceRadiusKm": 9
-    }
-}
-```
-### 10. `PUT /api/provider/profile` — Updating provider profile 
-
-Updating provider profile by UserId. 
-
-Request Body
-
-```json
-{
-    "providerId": 4283,
-    "name": "Nissy"
-}
-
-
-Success Response
-
-{
-    "success": true,
-    "message": "Provider profile updated successfully",
-    "provider": {
-        "pricing": {
-            "hourly": 300,
-            "daily": 2000,
-            "monthly": 45000
-        },
-        "_id": "698c31bc4465bcdf47d01157",
-        "providerId": 4283,
-        "name": "Nissy",
-        "email": "kusumayekula0191@gmail.com",
-        "role": "provider",
-        "typeOfCare": "Domiciliary Care",
-        "location": "Hyderabad, Madhapur",
-        "phone": "",
-        "password": "$2b$10$1eg.nYHNrEpeayLEwuHVGuUUlrObA8sm4yl.ofnvwMj8c420s5TEK",
-        "services": [
-            "Home Nursing"
-        ],
-        "credentials": [
-            "Nursing Certificate"
-        ],
-        "isVerified": true,
-        "avatar": "",
-        "pictures": [],
-        "createdAt": "2026-02-11T07:37:32.714Z",
-        "updatedAt": "2026-02-11T08:33:21.230Z",
-        "availability": {
-            "monday": "9AM-6PM",
-            "thursday": "9AM-6PM",
-            "wednesday": "9AM-6PM",
-            "tuesday": "9AM-6PM",
-            "friday": "9AM-6PM",
-            "saturday": "9AM-6PM"
-        },
-        "serviceRadiusKm": 9
-    }
-}
+#### Request Body (form-data)
 
 ```
-### 11. `DELETE /api/provider/profile` — Delete Provider Profile
+providerId: 4283
+name: John Care
+phone: 9876543210
+typeOfCare: Domiciliary Care
+location: Bangalore
+serviceRadiusKm: 10
+services: ["Bathing","Feeding"]
+credentials: ["CPR","Nursing"]
+availability: {"monday":"9AM-6PM","tuesday":"9AM-6PM"}
+pricing: {"hourly":300,"daily":2000}
+```
 
-Deleting provider profile by UserId. Provider access token is the authorized bearer.
+#### Images (form-data)
 
-Request Body
+```
+avatar → single image  
+pictures → up to 5 images
+```
+
+⭐ If latitude & longitude are not provided → system auto-detects from address/postalCode/city.
+
+#### Success Response
 
 ```json
 {
-  "profileId": 4283
+  "success": true,
+  "message": "Provider profile created successfully",
+  "provider": {}
 }
+```
 
-Success Response
+---
 
+### 21. `GET /api/provider/providers` — Get All Providers
+
+Fetch providers with pagination and search.
+
+#### Query Params
+
+```
+?page=1
+&limit=10
+&typeOfCare=Dementia Care
+&search=john
+```
+
+#### Success Response
+
+```json
 {
-    "success": true,
-    "message": "Provider profile deleted successfully",
-    "deletedUserId": 3897
+  "success": true,
+  "totalProviders": 25,
+  "currentPage": 1,
+  "totalPages": 3,
+  "providers": []
 }
+```
 
+---
+
+### 22. `POST /api/provider/profile/providerid` — Get Provider Profile
+
+Authorization: Bearer Token
+
+#### Request Body
+
+```json
+{
+  "providerId": 4283
+}
+```
+
+#### Success Response
+
+```json
+{
+  "success": true,
+  "provider": {}
+}
+```
+
+---
+
+### 23. `PUT /api/provider/profile` — Update Provider Profile
+
+Update provider profile (partial update supported).  
+Accepts multipart/form-data.  
+Authorization: Bearer Token
+
+#### Request Body
+
+```
+providerId: 4283
+name: Updated Name
+serviceRadiusKm: 15
+```
+
+✔ Replace images automatically  
+✔ Auto geocode if address updated  
+
+#### Success Response
+
+```json
+{
+  "success": true,
+  "message": "Provider profile updated successfully",
+  "provider": {}
+}
+```
+
+---
+
+### 24. `DELETE /api/provider/profile` — Delete Provider Profile
+
+Deletes provider profile and all S3 images.  
+Authorization: Bearer Token
+
+#### Request Body
+
+```json
+{
+  "providerId": 4283
+}
+```
+
+#### Success Response
+
+```json
+{
+  "success": true,
+  "message": "Provider profile along with images deleted successfully"
+}
+```
+
+---
+
+### 25. `POST /api/provider/search` — Geo Search Providers
+
+Find nearby providers using GPS or Address.
+
+#### Option 1 — Using GPS
+
+```json
+{
+  "latitude": 12.9716,
+  "longitude": 77.5946
+}
+```
+
+#### Option 2 — Using Address
+
+```json
+{
+  "postalCode": "560001",
+  "city": "Bangalore"
+}
+```
+
+#### Optional Filters
+
+```json
+{
+  "radiusMiles": 10,
+  "typeOfCare": "Dementia Care"
+}
+```
+
+Default radius = **20 miles**
+
+---
+
+### Smart Ranking Logic
+
+Providers sorted by score:
+
+| Condition | Score |
+|---|---|
+| Matching care type | +5 |
+| Distance ≤ 5 miles | +4 |
+| Distance ≤ 10 miles | +3 |
+| Distance ≤ 20 miles | +2 |
+
+Final sorting:
+
+```
+rankScore DESC → distance ASC
+```
+
+---
+
+#### Success Response
+
+```json
+{
+  "success": true,
+  "searchCenter": {
+    "latitude": 12.97,
+    "longitude": 77.59
+  },
+  "radiusMiles": 10,
+  "totalFound": 5,
+  "providers": [
+    {
+      "name": "John Care",
+      "distanceMiles": 2.3,
+      "rankScore": 9
+    }
+  ]
+}
+```
+
+---
+
+### MongoDB Setup (IMPORTANT)
+
+Run once:
+
+```js
+db.providersTree.createIndex({ locationGeo: "2dsphere" })
+```
+
+---
+
+### Error Response Format
+
+```json
+{
+  "success": false,
+  "message": "Error message",
+  "error": "optional_debug_error"
+}
 ```
 
 # Booking Endpoints
