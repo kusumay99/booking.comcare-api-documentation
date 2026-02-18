@@ -757,3 +757,181 @@ Success Response
 }
 
 ```
+
+### 20. `POST /api/user/profile` — user can create their profile 
+
+This is for user can create their profile. User Access token as a bearer token. 
+
+Request Body
+
+```json
+
+KEY	TYPE	VALUE
+photo	File	(choose image file)
+name	Text	Kusuma
+phone	Text	9876543210
+bio	Text	Need care service
+address	Text	Hitech City
+city	Text	Hyderabad
+postalCode	Text	500081
+recipientName	Text	Ramesh
+recipientAge	Text	65
+recipientGender	Text	Male
+mobilityStatus	Text	Wheelchair
+equipmentDetails	Text	Oxygen Cylinder
+emergencyContactName	Text	Naveen
+emergencyContactPhone	Text	9988776655
+medicalConditions	Text	["Diabetes","BP"]
+preferredCareTypes	Text	["Domiciliary Care","Respite Care"]
+languagesPreferred	Text	["English","Telugu"]
+
+Success Response
+
+{
+  "success": true,
+  "message": "Profile saved successfully",
+  "profile": {
+    "_id": "65d9f4c2b3a1f123456789ab",
+    "userId": 408,
+    "role": "user",
+    "name": "Kusuma",
+    "email": "kusuma@gmail.com",
+    "address": "Hitech City",
+    "city": "Hyderabad",
+    "postalCode": "500081",
+    "recipientName": "Ramesh",
+    "recipientAge": 65,
+    "recipientGender": "Male",
+    "mobilityStatus": "Wheelchair",
+    "equipmentDetails": "Oxygen Cylinder",
+    "emergencyContactName": "Naveen",
+    "emergencyContactPhone": "9988776655",
+    "medicalConditions": ["Diabetes", "BP"],
+    "preferredCareTypes": ["Domiciliary Care", "Respite Care"],
+    "languagesPreferred": ["English", "Telugu"],
+    "isProfileCompleted": true,
+    "profile": {
+      "phone": "9876543210",
+      "bio": "Need care service",
+      "avatar": "https://your-s3-bucket-url/profile-photo.jpg"
+    },
+    "locationGeo": {
+      "type": "Point",
+      "coordinates": [78.3856, 17.4474]
+    },
+    "createdAt": "2026-02-18T10:30:00.000Z",
+    "updatedAt": "2026-02-18T10:40:00.000Z"
+  }
+}
+
+
+```
+### 21. `GET /api/user/profile` — Get user profile  
+
+This is for getting user profile. User Access token as a bearer token. For this we no need any body data.
+
+Request Body
+
+```json
+
+Success Response
+
+{
+    "success": true,
+    "message": "Profile saved successfully",
+    "profile": {
+        "locationGeo": {
+            "type": "Point",
+            "coordinates": [
+                -122.1627345,
+                38.0716295
+            ]
+        },
+        "_id": "699548fa8086ecea20c53b96",
+        "userId": 329,
+        "name": "Nissy",
+        "email": "kusumayekula872@gmail.com",
+        "password": "$2b$10$nKBT/USTOpjNZkhj/wNWK.cS.ivPAf008Drik2gwwNbfPwvVW8Bh.",
+        "role": "user",
+        "otp": null,
+        "otpExpire": null,
+        "isVerified": true,
+        "address": "221B Baker Street",
+        "city": "London",
+        "postalCode": "",
+        "houseType": "",
+        "floorNumber": "",
+        "hasLift": false,
+        "petsAtHome": false,
+        "bookingFor": "",
+        "recipientName": "Sujatha",
+        "recipientAge": 70,
+        "recipientGender": "",
+        "height": "",
+        "weight": "",
+        "medicalConditions": [],
+        "allergies": "",
+        "currentMedications": "",
+        "mobilityStatus": "Walks with support",
+        "requiresMedicalEquipment": false,
+        "equipmentDetails": "",
+        "mentalCondition": "",
+        "specialInstructions": "",
+        "preferredCareTypes": [
+            "Dementia Care",
+            "Respite Care"
+        ],
+        "careShift": "",
+        "careFrequency": "",
+        "preferredCaregiverGender": "",
+        "languagesPreferred": [
+            "English"
+        ],
+        "emergencyContactName": "",
+        "emergencyContactPhone": "1234567890",
+        "relationship": "",
+        "isProfileCompleted": true,
+        "createdAt": "2026-02-18T05:07:07.005Z",
+        "updatedAt": "2026-02-18T05:17:52.369Z",
+        "__v": 1,
+        "profile": {
+            "avatar": "https://nursingbookingcare.s3.ap-south-1.amazonaws.com/providers/92aeaae7-563e-4b5b-9645-4834b5e945ca.png",
+            "phone": "9542679596",
+            "bio": ""
+        }
+    }
+}
+
+```
+
+### 22. `GET /api/user/profile/check` — user can flag the review 
+
+This is api is for checking user profile creation completed or not. User Access token as a bearer token. For this we no need any data as a body.
+
+Request Body
+
+```json
+
+Success Response
+
+{
+    "success": true,
+    "message": "Review flagged successfully",
+    "review": {
+        "_id": "698cdd8fe37c0391a3221a02",
+        "reviewId": 2,
+        "bookingId": 4,
+        "userId": 888,
+        "providerId": 4283,
+        "rating": 5,
+        "comment": "Excellent service and very professional.",
+        "isFlagged": true,
+        "flagReason": "This review contains false information",
+        "isHidden": false,
+        "createdAt": "2026-02-11T19:50:39.846Z",
+        "updatedAt": "2026-02-11T20:07:57.256Z",
+        "__v": 0
+    }
+}
+
+```
