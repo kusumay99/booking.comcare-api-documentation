@@ -425,10 +425,10 @@ Request Body
 
 ```json
 {
-  "providerId": 4283,
-  "serviceType": "Dementia Care",
-  "appointmentDate": "2026-02-15T10:00:00.000Z",
-  "notes": "Need care for 2 hours"
+    "providerId": 7751,
+    "appointmentDate": "2026-02-20T10:30:00.000Z",
+    "serviceType": "Domiciliary Care",
+    "notes": "Patient needs daily support"
 }
 
 
@@ -438,22 +438,32 @@ Success Response
     "success": true,
     "message": "Booking created successfully",
     "booking": {
-        "bookingId": 4,
-        "userId": 888,
-        "providerId": 4283,
-        "serviceType": "Dementia Care",
-        "appointmentDate": "2026-02-15T10:00:00.000Z",
+        "bookingId": 8,
+        "userId": 329,
+        "providerId": 7751,
+        "serviceType": "Domiciliary Care",
+        "appointmentDate": "2026-02-20T10:30:00.000Z",
         "status": "Pending",
-        "notes": "Need care for 2 hours",
+        "patientSnapshot": {
+            "recipientName": "Sujatha",
+            "recipientAge": 70,
+            "recipientGender": "",
+            "mobilityStatus": "Walks with support",
+            "medicalConditions": [],
+            "equipmentDetails": "",
+            "address": "221B Baker Street",
+            "city": "London",
+            "emergencyContactName": "",
+            "emergencyContactPhone": "1234567890"
+        },
+        "notes": "Patient needs daily support",
         "rejectionReason": "",
-        "_id": "698c4acae37c0391a322197e",
-        "createdAt": "2026-02-11T09:24:26.816Z",
-        "updatedAt": "2026-02-11T09:24:26.816Z",
+        "_id": "6995700377ee79dc9b147e5b",
+        "createdAt": "2026-02-18T07:53:39.852Z",
+        "updatedAt": "2026-02-18T07:53:39.852Z",
         "__v": 0
     }
 }
-
-
 ```
 
 
