@@ -784,7 +784,8 @@ emergencyContactPhone	Text	9988776655
 medicalConditions	Text	["Diabetes","BP"]
 preferredCareTypes	Text	["Domiciliary Care","Respite Care"]
 languagesPreferred	Text	["English","Telugu"]
-
+```
+```
 Success Response
 
 {
@@ -1072,11 +1073,11 @@ This is for booking slot os CQC care.
 Request Body
 
 ```json
-
 {
     "chatId": 4
 }
-
+```
+```
 Success Response
 
 {
