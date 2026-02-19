@@ -1138,7 +1138,9 @@ Success Response
     ]
 }
 
-```### 23. `POST /api/chat/templates/provider` — Getting provider tamplet while chatting
+```
+
+### 23. `POST /api/chat/templates/provider` — Getting provider tamplet while chatting
 
 Getting provider messages tamplets to send automatic messages. Provider access token will work on authorization bearer.
 
