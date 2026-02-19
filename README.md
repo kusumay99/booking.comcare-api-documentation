@@ -935,3 +935,225 @@ Success Response
 }
 
 ```
+
+### 23. `GET /api/chat/templates/provider` — Getting provider tamplet while chatting
+
+Getting provider messages tamplets to send automatic messages. Provider access token will work on authorization bearer.
+
+Request Body
+
+```json
+
+Success Response
+
+{
+    "success": true,
+    "templates": [
+        "👋 Hi, We are interested in providing care for you.",
+        "We are available for your requested care service.",
+        "We match your care requirements."
+    ]
+}
+
+```
+
+### 24. `GET /api/chat/templates/user` — Getting user tamplet while chatting
+
+Getting user messages tamplets to send automatic messages. user access token will work on authorization bearer.
+
+Request Body
+
+```json
+
+Success Response
+
+{
+    "success": true,
+    "templates": [
+        "Yes, I'm interested",
+        "Tell me more",
+        "Not interested"
+    ]
+}
+
+```
+### 25. `POST /api/chat/provider/start` — Start messaging by care provider
+
+
+Sending first automatic message by provider. Provider access token will work on authorization bearer.
+
+Request Body
+
+```json
+
+{
+    "userId": 329,
+    "text": "👋 Hi, I am interested in providing care for you."
+}
+
+Success Response
+
+{
+    "success": true,
+    "chat": {
+        "chatId": 4,
+        "providerId": 7751,
+        "userId": 329,
+        "lastMessage": "👋 Hi, I am interested in providing care for you.",
+        "messages": [
+            {
+                "sender": "provider",
+                "type": "template",
+                "text": "👋 Hi, I am interested in providing care for you.",
+                "_id": "699684844b052945cbd56867",
+                "createdAt": "2026-02-19T03:33:24.716Z"
+            }
+        ],
+        "_id": "699684844b052945cbd56866",
+        "createdAt": "2026-02-19T03:33:24.730Z",
+        "updatedAt": "2026-02-19T03:33:24.730Z",
+        "__v": 0
+    }
+}
+
+```
+
+### 26. `POST /api/chat/user/reply` — Sending reply by user
+
+Sending reply by user to automatic message by provider. user access token will work on authorization bearer.
+
+Request Body
+
+```json
+
+{
+    "chatId": 4,
+    "text": "Yes, I'm interested"
+}
+
+Success Response
+
+{
+    "success": true,
+    "chat": {
+        "_id": "699684844b052945cbd56866",
+        "chatId": 4,
+        "providerId": 7751,
+        "userId": 329,
+        "lastMessage": "Yes, I'm interested",
+        "messages": [
+            {
+                "sender": "provider",
+                "type": "template",
+                "text": "👋 Hi, I am interested in providing care for you.",
+                "_id": "699684844b052945cbd56867",
+                "createdAt": "2026-02-19T03:33:24.716Z"
+            },
+            {
+                "sender": "user",
+                "type": "reply",
+                "text": "Yes, I'm interested",
+                "_id": "699687314b052945cbd5686b",
+                "createdAt": "2026-02-19T03:44:49.146Z"
+            }
+        ],
+        "createdAt": "2026-02-19T03:33:24.730Z",
+        "updatedAt": "2026-02-19T03:44:49.150Z",
+        "__v": 1
+    }
+}
+
+```
+
+### 27. `POST /api/chat/provider/booknow` — Booking Care
+
+This is for booking slot os CQC care. 
+
+Request Body
+
+```json
+
+{
+    "chatId": 4
+}
+
+Success Response
+
+{
+    "success": true,
+    "chat": {
+        "_id": "699684844b052945cbd56866",
+        "chatId": 4,
+        "providerId": 7751,
+        "userId": 329,
+        "lastMessage": "Book Now",
+        "messages": [
+            {
+                "sender": "provider",
+                "type": "template",
+                "text": "👋 Hi, I am interested in providing care for you.",
+                "_id": "699684844b052945cbd56867",
+                "createdAt": "2026-02-19T03:33:24.716Z"
+            },
+            {
+                "sender": "user",
+                "type": "reply",
+                "text": "Yes, I'm interested",
+                "_id": "699687314b052945cbd5686b",
+                "createdAt": "2026-02-19T03:44:49.146Z"
+            },
+            {
+                "sender": "provider",
+                "type": "action",
+                "text": "Book Now",
+                "action": "BOOK_NOW",
+                "_id": "699687cb4b052945cbd56870",
+                "createdAt": "2026-02-19T03:47:23.410Z"
+            }
+        ],
+        "createdAt": "2026-02-19T03:33:24.730Z",
+        "updatedAt": "2026-02-19T03:47:23.414Z",
+        "__v": 2
+    }
+}
+
+```
+### 23. `POST /api/chat/templates/provider` — Getting provider tamplet while chatting
+
+Getting provider messages tamplets to send automatic messages. Provider access token will work on authorization bearer.
+
+Request Body
+
+```json
+
+Success Response
+
+{
+    "success": true,
+    "templates": [
+        "👋 Hi, We are interested in providing care for you.",
+        "We are available for your requested care service.",
+        "We match your care requirements."
+    ]
+}
+
+```### 23. `POST /api/chat/templates/provider` — Getting provider tamplet while chatting
+
+Getting provider messages tamplets to send automatic messages. Provider access token will work on authorization bearer.
+
+Request Body
+
+```json
+
+Success Response
+
+{
+    "success": true,
+    "templates": [
+        "👋 Hi, We are interested in providing care for you.",
+        "We are available for your requested care service.",
+        "We match your care requirements."
+    ]
+}
+
+```
