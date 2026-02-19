@@ -1158,3 +1158,135 @@ Success Response
 }
 
 ```
+# Posts Endpoints
+
+---
+
+### 28. `POST /api/posts/create` — Create Care Request Post
+
+Create a new care request post.  
+Only **Service User** can create posts.  
+Authorization: User Access Token (Bearer)  
+Content-Type: multipart/form-data
+
+#### Request Body (form-data)
+
+| Key | Type | Required |
+|---|---|---|
+| title | Text | ✅ |
+| description | Text | ✅ |
+| careType | Text | ✅ |
+| city | Text | ✅ |
+| postalCode | Text | ✅ |
+| appointmentDate | Date | ✅ |
+| budget | Number | ✅ |
+| photo | File | ❌ |
+
+#### Success Response
+
+```json
+{
+  "success": true,
+  "message": "Post created successfully",
+  "post": {
+    "postId": 12,
+    "userId": 329,
+    "title": "Need dementia care",
+    "description": "Looking for experienced caregiver",
+    "careType": "Dementia Care",
+    "city": "London",
+    "postalCode": "NW16XE",
+    "budget": 200,
+    "appointmentDate": "2026-02-22T10:00:00.000Z",
+    "photo": "https://s3-url/post-image.jpg",
+    "status": "Active"
+  }
+}
+```
+### 29.`PUT /api/posts/update ` — Update Post
+
+Update an existing post.
+Only Post Owner can update.
+Authorization: User Access Token (Bearer)
+Content-Type: multipart/form-data
+
+### Request Body (form-data)
+Key	Required
+postId	✅
+title	❌
+description	❌
+careType	❌
+city	❌
+postalCode	❌
+budget	❌
+appointmentDate	❌
+status	❌
+photo	❌
+
+⭐ Old photo will be removed from S3 if new photo uploaded.
+
+### Success Response
+```json
+{
+  "success": true,
+  "message": "Post updated successfully",
+  "post": {}
+}
+```
+### 30. `DELETE /api/posts/delete `— Delete Post
+
+Delete post and its S3 image.
+Only Post Owner can delete.
+Authorization: User Access Token (Bearer)
+
+### Request Body
+```json
+{
+  "postId": 12
+}
+```
+```json
+Success Response
+{
+  "success": true,
+  "message": "Post deleted successfully"
+}
+```
+### 31. GET /api/posts/all — Get All Active Posts
+
+Fetch all active care request posts.
+Accessible by Users & Providers.
+Authorization: Bearer Token
+
+### Success Response
+```json
+{
+  "success": true,
+  "count": 10,
+  "posts": []
+}
+
+Sorted by newest first.
+```
+### 32.` GET /api/posts/my-posts` — Get My Posts
+
+Fetch posts created by logged-in user.
+Only Service User can access.
+Authorization: User Access Token (Bearer)
+
+### Success Response
+```json
+{
+  "success": true,
+  "count": 3,
+  "posts": []
+}
+```
+```json
+📌 Common Error Response
+{
+  "success": false,
+  "message": "Error message",
+  "error": "optional_debug_error"
+}
+```
