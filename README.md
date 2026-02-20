@@ -1292,3 +1292,361 @@ Authorization: User Access Token (Bearer)
   "error": "optional_debug_error"
 }
 ```
+
+# Admin Endpoints
+
+AUTHENTICATION
+
+
+### 34 POST /admin/send-otp - SEND OTP
+Access: Public
+
+Request Body:
+{
+    "email": "admin@example.com"
+}
+
+Success Response:
+{
+    "success": true,
+    "message": "OTP sent to email successfully"
+}
+
+Error Response:
+{
+    "success": false,
+    "message": "Email is required"
+}
+
+
+### 35 POST /admin/verify-otp - VERIFY OTP
+Access: Public
+
+Request Body:
+{
+    "email": "kusumayekula0191@gmail.com",
+    "otp": "123456"
+}
+
+Success Response:
+{
+    "success": true,
+    "message": "Login successful",
+    "adminId": 1,
+    "accessToken": "JWT_TOKEN"
+}
+
+Error Response:
+{
+    "success": false,
+    "message": "Invalid OTP"
+}
+
+{
+    "success": false,
+    "message": "OTP expired"
+}
+
+# PROTECTED ROUTES
+
+All routes below require header:
+
+Authorization: Bearer YOUR_ADMIN_TOKEN
+Content-Type: application/json
+
+## PROVIDER MANAGEMENT
+
+### 36 POST /admin/providers/list - GET PROVIDERS LIST
+
+Request Body:
+{
+    "status": "pending",
+    "search": "john"
+}
+
+Status values:
+pending
+verified
+rejected
+
+Success Response:
+{
+    "success": true,
+    "providers": 
+    {
+        "providerId": 101,
+        "name": "John Care",
+        "email": "john@example.com",
+        "isVerified": false,
+        "isRejected": false,
+        "isBlocked": false,
+        "createdAt": "2026-02-20T10:00:00.000Z"
+        }
+}
+
+### 37 POST /admin/providers/details - GET PROVIDER DETAILS
+
+Request Body:
+{
+    "providerId": 101
+}
+
+Success Response:
+{
+    "success": true,
+    "provider": {
+        "providerId": 101,
+        "name": "John Care",
+        "email": "john@example.com",
+        "typeOfCare": "Domiciliary Care",
+        "isVerified": false,
+        "isBlocked": false,
+        "adminNote": ""
+    }
+}
+
+### 38 POST /admin/providers/verify - VERIFY PROVIDER
+
+Request Body:
+{
+    "providerId": 101,
+    "note": "Documents verified"
+}
+
+Success Response:
+{
+    "success": true,
+    "message": "Provider verified",
+    "provider": {
+        "providerId": 101,
+        "isVerified": true,
+        "isRejected": false,
+        "adminNote": "Documents verified"
+        }
+}
+
+### 39 POST /admin/providers/reject - REJECT PROVIDER
+
+Request Body:
+{
+    "providerId": 101,
+    "note": "Invalid documents"
+}
+
+Success Response:
+{
+    "success": true,
+    "message": "Provider rejected",
+    "provider": {
+        "providerId": 101,
+        "isVerified": false,
+        "isRejected": true,
+        "adminNote": "Invalid documents"
+        }
+}
+
+### 40 POST /admin/providers/block - BLOCK / UNBLOCK PROVIDER
+
+Request Body:
+{
+    "providerId": 101,
+    "blocked": true,
+    "note": "Policy violation"
+}
+
+Success Response:
+{
+    "success": true,
+    "message": "Provider blocked",
+    "provider": {
+        "providerId": 101,
+        "isBlocked": true
+    }
+}
+
+## REVIEW MODERATION
+
+### 41 POST /admin/reviews/list - GET REVIEWS
+
+Request Body:
+{
+    "status": "pending",
+    "providerId": 101,
+    "userId": 201
+}
+
+Success Response:
+{
+    "success": true,
+    "total": 1,
+    "reviews": [
+{
+"reviewId": 301,
+"providerId": 101,
+"userId": 201,
+"rating": 5,
+"comment": "Excellent service",
+"status": "pending",
+"createdAt": "2026-02-20T09:00:00.000Z"
+}
+]
+}
+
+### 42 POST /admin/reviews/approve - APPROVE REVIEW
+
+Request Body:
+{
+    "reviewId": 301
+}
+
+Success Response:
+{
+    "success": true,
+    "message": "Review approved",
+    "review": {
+        "reviewId": 301,
+        "status": "approved"
+    }
+}
+
+### 43 POST /admin/reviews/reject - REJECT REVIEW
+
+Request Body:
+{
+    "reviewId": 301,
+    "reason": "Inappropriate language"
+}
+
+Success Response:
+{
+    "success": true,
+    "message": "Review rejected",
+    "review": {
+        "reviewId": 301,
+        "status": "rejected",
+        "rejectReason": "Inappropriate language"
+    }
+}
+
+### 44 POST /admin/reviews/delete - DELETE REVIEW
+
+Request Body:
+{
+    "reviewId": 301
+}
+
+Success Response:
+{
+    "success": true,
+    "message": "Review deleted"
+}
+
+## BOOKING MANAGEMENT
+
+### 45 POST /admin/bookings/list - GET BOOKINGS
+
+Request Body:
+{
+    "status": "pending",
+    "providerId": 101,
+    "userId": 201,
+    "from": "2026-01-01",
+    "to": "2026-12-31"
+}
+
+Success Response:
+{
+    "success": true,
+    "bookings": [
+{
+"bookingId": 501,
+"providerId": 101,
+"userId": 201,
+"status": "pending",
+"appointmentDate": "2026-03-01",
+"createdAt": "2026-02-20T10:00:00.000Z"
+}
+]
+}
+
+### 46 POST /admin/bookings/details - GET BOOKING DETAILS
+
+Request Body:
+{
+    "bookingId": 501
+}
+
+Success Response:
+{
+    "success": true,
+    "booking": {
+        "bookingId": 501,
+        "providerId": 101,
+        "userId": 201,
+        "status": "pending",
+        "appointmentDate": "2026-03-01"
+    }
+}
+
+### 47 POST /admin/bookings/update-status - UPDATE BOOKING STATUS
+
+Request Body:
+{
+    "bookingId": 501,
+    "status": "confirmed"
+}
+
+Status values:
+pending
+confirmed
+completed
+cancelled
+
+Success Response:
+{
+    "success": true,
+    "message": "Booking updated",
+    "booking": {
+        "bookingId": 501,
+        "status": "confirmed"
+    }
+}
+
+
+### 48 POST /admin/bookings/cancel - CANCEL BOOKING
+
+Request Body:
+{
+    "bookingId": 501,
+    "reason": "Customer request"
+}
+
+Success Response:
+{
+"success": true,
+    "message": "Booking cancelled",
+    "booking": {
+    "bookingId": 501,
+    "status": "cancelled",
+    "cancelReason": "Customer request"
+    }
+}
+
+## DASHBOARD
+
+### 49 GET /admin/dashboard/stats - DASHBOARD STATS
+
+Success Response:
+{
+    "success": true,
+    "stats": {
+        "totalUsers": 150,
+        "totalProviders": 40,
+        "pendingProviders": 5,
+        "totalBookings": 320,
+        "pendingBookings": 20,
+        "totalPayments": 280,
+        "paidPayments": 250,
+        "totalRevenue": 125000
+    }
+}
