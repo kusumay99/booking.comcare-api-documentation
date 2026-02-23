@@ -1507,16 +1507,16 @@ Request Body:
     "success": true,
     "total": 1,
     "reviews": [
-{
-"reviewId": 301,
-"providerId": 101,
-"userId": 201,
-"rating": 5,
-"comment": "Excellent service",
-"status": "pending",
-"createdAt": "2026-02-20T09:00:00.000Z"
-}
-]
+        {
+        "reviewId": 301,
+        "providerId": 101,
+        "userId": 201,
+        "rating": 5,
+        "comment": "Excellent service",
+        "status": "pending",
+        "createdAt": "2026-02-20T09:00:00.000Z"
+        }
+    ]
 }
 ````
 ### 42 POST /admin/reviews/approve - APPROVE REVIEW
@@ -1595,15 +1595,15 @@ Success Response:
 {
     "success": true,
     "bookings": [
-{
-"bookingId": 501,
-"providerId": 101,
-"userId": 201,
-"status": "pending",
-"appointmentDate": "2026-03-01",
-"createdAt": "2026-02-20T10:00:00.000Z"
-}
-]
+    {
+        "bookingId": 501,
+        "providerId": 101,
+        "userId": 201,
+        "status": "pending",
+        "appointmentDate": "2026-03-01",
+        "createdAt": "2026-02-20T10:00:00.000Z"
+       }
+    ]
 }
 ```
 ### 46 POST /admin/bookings/details - GET BOOKING DETAILS
