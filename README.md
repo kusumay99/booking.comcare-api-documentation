@@ -12,7 +12,8 @@ https://api.nursingcarebooking.com
 
 ### 1. `POST /api/auth/register` — Register 
 
-Register a profile with required name, email,role and password after that user will get the OTP. If they want to register as a user they need to give role as a user or if they want to be provider they need to give role as a provider.
+Registers a new User or Provider by sending OTP to email.
+Account will be created only after OTP verification.
 
 Request Body
 
@@ -34,7 +35,7 @@ Success Response
 ```
 ### 2. `POST /api/auth/resend-otp` — Resend OTP
 
-Resend OTP with required name, email and password after that user will get the OTP.
+Resends OTP for registration.
 
 Request Body
 
@@ -53,7 +54,7 @@ Success Response
 ```
 ### 3. `POST /api/auth/verify-otp` — Verify OTP
 
-Verify the OPT and later if it a user profile user profile will create if it is provider provider profile will create. 
+Verifies OTP and creates account.
 
 Request Body
 
@@ -81,7 +82,8 @@ Success Response
 
 ### 4. `POST /api/auth/login` — Login
 
-Login profile with required email and password and we will get that profile as well.
+Login using email and password.
+Returns JWT token.
 
 Request Body
 
@@ -110,7 +112,7 @@ Success Response
 
 ### 5. `POST /api/auth/forgot-password` — Forgot Password
 
-Sending OTP if user forgot password.
+Sends OTP for password reset.
 
 Request Body
 
@@ -130,7 +132,7 @@ Success Response
 
 ### 6. `POST /api/auth/reset-password` — Reset Password
 
-Recreating the password with OTP
+Verifies OTP and resets password.
 
 Request Body
 
@@ -151,7 +153,7 @@ Success Response
 ```
 ### 7. ` /api/auth/delete` — Delete
 
-If login profile is user profile we can delete profile by userId or it is provider we need to give providerId for deleting that login profile.
+Deletes a user or provider account using ID.
 
 Request Body
 
