@@ -1308,23 +1308,28 @@ AUTHENTICATION
 ### 34 POST /admin/send-otp - SEND OTP
 Access: Public
 
+```json
 Request Body:
 {
     "email": "admin@example.com"
 }
+```
+### Success Response:
 
-Success Response:
+```json
 {
     "success": true,
     "message": "OTP sent to email successfully"
 }
-
+``` 
 Error Response:
+```json
+
 {
     "success": false,
     "message": "Email is required"
 }
-
+```
 
 ### 35 POST /admin/verify-otp - VERIFY OTP
 Access: Public
