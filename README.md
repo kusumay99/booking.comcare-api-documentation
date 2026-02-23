@@ -421,7 +421,10 @@ db.providersTree.createIndex({ locationGeo: "2dsphere" })
 
 ### 12. `POST /api/booking/create` — Create Booking
 
-create booking by providerId. To this we need to give user Access Token as a authorization Bearer.
+Allows a User to create a new booking request for a provider.
+User profile must be completed.
+Service type must be valid.
+Booking status will be Pending initially.
 
 Request Body
 
@@ -432,9 +435,11 @@ Request Body
     "serviceType": "Domiciliary Care",
     "notes": "Patient needs daily support"
 }
+```
 
+#### Success Response
 
-Success Response
+```json
 
 {
     "success": true,
