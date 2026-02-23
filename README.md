@@ -1311,7 +1311,7 @@ Access: Public
 ```json
 Request Body:
 {
-    "email": "admin@example.com"
+    "email": "kusumayekula0191@gmail.com"
 }
 ```
 ### Success Response:
@@ -1335,20 +1335,23 @@ Error Response:
 Access: Public
 
 Request Body:
+```json
 {
     "email": "kusumayekula0191@gmail.com",
     "otp": "123456"
 }
-
+```
 Success Response:
+```json
 {
     "success": true,
     "message": "Login successful",
     "adminId": 1,
     "accessToken": "JWT_TOKEN"
 }
-
+```
 Error Response:
+```json
 {
     "success": false,
     "message": "Invalid OTP"
@@ -1358,7 +1361,7 @@ Error Response:
     "success": false,
     "message": "OTP expired"
 }
-
+```
 # PROTECTED ROUTES
 
 All routes below require header:
@@ -1371,6 +1374,7 @@ Content-Type: application/json
 ### 36 POST /admin/providers/list - GET PROVIDERS LIST
 
 Request Body:
+```json
 {
     "status": "pending",
     "search": "john"
@@ -1380,8 +1384,9 @@ Status values:
 pending
 verified
 rejected
-
+```
 Success Response:
+```json
 {
     "success": true,
     "providers": 
@@ -1395,15 +1400,17 @@ Success Response:
         "createdAt": "2026-02-20T10:00:00.000Z"
         }
 }
-
+```
 ### 37 POST /admin/providers/details - GET PROVIDER DETAILS
 
 Request Body:
+```json
 {
     "providerId": 101
 }
-
-Success Response:
+```
+### Success Response:
+```json
 {
     "success": true,
     "provider": {
@@ -1416,16 +1423,18 @@ Success Response:
         "adminNote": ""
     }
 }
-
+```
 ### 38 POST /admin/providers/verify - VERIFY PROVIDER
 
 Request Body:
+```json
 {
     "providerId": 101,
     "note": "Documents verified"
 }
-
+```
 Success Response:
+```json
 {
     "success": true,
     "message": "Provider verified",
@@ -1436,16 +1445,18 @@ Success Response:
         "adminNote": "Documents verified"
         }
 }
-
+```
 ### 39 POST /admin/providers/reject - REJECT PROVIDER
 
 Request Body:
+```json
 {
     "providerId": 101,
     "note": "Invalid documents"
 }
-
+```
 Success Response:
+```json
 {
     "success": true,
     "message": "Provider rejected",
@@ -1456,17 +1467,19 @@ Success Response:
         "adminNote": "Invalid documents"
         }
 }
-
+```
 ### 40 POST /admin/providers/block - BLOCK / UNBLOCK PROVIDER
 
 Request Body:
+```json
 {
     "providerId": 101,
     "blocked": true,
     "note": "Policy violation"
 }
-
-Success Response:
+```
+### Success Response:
+```json
 {
     "success": true,
     "message": "Provider blocked",
@@ -1475,19 +1488,21 @@ Success Response:
         "isBlocked": true
     }
 }
-
+```
 ## REVIEW MODERATION
 
 ### 41 POST /admin/reviews/list - GET REVIEWS
 
 Request Body:
+```json
 {
     "status": "pending",
     "providerId": 101,
     "userId": 201
 }
-
-Success Response:
+```
+### Success Response:
+```json
 {
     "success": true,
     "total": 1,
@@ -1503,15 +1518,17 @@ Success Response:
 }
 ]
 }
-
+````
 ### 42 POST /admin/reviews/approve - APPROVE REVIEW
 
 Request Body:
+```json
 {
     "reviewId": 301
 }
-
+```
 Success Response:
+```json
 {
     "success": true,
     "message": "Review approved",
@@ -1520,16 +1537,18 @@ Success Response:
         "status": "approved"
     }
 }
-
+```
 ### 43 POST /admin/reviews/reject - REJECT REVIEW
 
 Request Body:
+```json
 {
     "reviewId": 301,
     "reason": "Inappropriate language"
 }
-
-Success Response:
+```
+### Success Response:
+```json
 {
     "success": true,
     "message": "Review rejected",
@@ -1539,25 +1558,29 @@ Success Response:
         "rejectReason": "Inappropriate language"
     }
 }
-
+```
 ### 44 POST /admin/reviews/delete - DELETE REVIEW
 
 Request Body:
+```json
+
 {
     "reviewId": 301
 }
-
-Success Response:
+```
+### Success Response:
+```json
 {
     "success": true,
     "message": "Review deleted"
 }
-
+```
 ## BOOKING MANAGEMENT
 
 ### 45 POST /admin/bookings/list - GET BOOKINGS
 
 Request Body:
+```json
 {
     "status": "pending",
     "providerId": 101,
@@ -1565,8 +1588,10 @@ Request Body:
     "from": "2026-01-01",
     "to": "2026-12-31"
 }
-
+```
 Success Response:
+```json
+
 {
     "success": true,
     "bookings": [
@@ -1580,15 +1605,17 @@ Success Response:
 }
 ]
 }
-
+```
 ### 46 POST /admin/bookings/details - GET BOOKING DETAILS
 
 Request Body:
+```json
 {
     "bookingId": 501
 }
-
-Success Response:
+```
+### Success Response:
+```json
 {
     "success": true,
     "booking": {
@@ -1599,10 +1626,12 @@ Success Response:
         "appointmentDate": "2026-03-01"
     }
 }
-
+```
 ### 47 POST /admin/bookings/update-status - UPDATE BOOKING STATUS
 
 Request Body:
+```json
+
 {
     "bookingId": 501,
     "status": "confirmed"
@@ -1613,8 +1642,10 @@ pending
 confirmed
 completed
 cancelled
+```
+### Success Response:
+```json
 
-Success Response:
 {
     "success": true,
     "message": "Booking updated",
@@ -1623,17 +1654,19 @@ Success Response:
         "status": "confirmed"
     }
 }
-
+```
 
 ### 48 POST /admin/bookings/cancel - CANCEL BOOKING
 
 Request Body:
+```json
 {
     "bookingId": 501,
     "reason": "Customer request"
 }
-
-Success Response:
+```
+### Success Response:
+```json
 {
 "success": true,
     "message": "Booking cancelled",
@@ -1643,6 +1676,7 @@ Success Response:
     "cancelReason": "Customer request"
     }
 }
+```
 
 ## DASHBOARD
 
