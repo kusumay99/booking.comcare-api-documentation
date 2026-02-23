@@ -1321,9 +1321,9 @@ Request Body:
     "success": true,
     "message": "OTP sent to email successfully"
 }
-``` 
+ 
 Error Response:
-```json
+
 
 {
     "success": false,
@@ -1340,18 +1340,18 @@ Request Body:
     "email": "kusumayekula0191@gmail.com",
     "otp": "123456"
 }
-```
+
 Success Response:
-```json
+
 {
     "success": true,
     "message": "Login successful",
     "adminId": 1,
     "accessToken": "JWT_TOKEN"
 }
-```
+
 Error Response:
-```json
+
 {
     "success": false,
     "message": "Invalid OTP"
@@ -1362,14 +1362,12 @@ Error Response:
     "message": "OTP expired"
 }
 ```
-# PROTECTED ROUTES
 
 All routes below require header:
 
 Authorization: Bearer YOUR_ADMIN_TOKEN
 Content-Type: application/json
 
-## PROVIDER MANAGEMENT
 
 ### 36 POST /admin/providers/list - GET PROVIDERS LIST
 
@@ -1384,9 +1382,9 @@ Status values:
 pending
 verified
 rejected
-```
+
 Success Response:
-```json
+
 {
     "success": true,
     "providers": 
@@ -1408,9 +1406,9 @@ Request Body:
 {
     "providerId": 101
 }
-```
-### Success Response:
-```json
+
+Success Response:
+
 {
     "success": true,
     "provider": {
@@ -1432,9 +1430,9 @@ Request Body:
     "providerId": 101,
     "note": "Documents verified"
 }
-```
+
 Success Response:
-```json
+
 {
     "success": true,
     "message": "Provider verified",
@@ -1454,9 +1452,9 @@ Request Body:
     "providerId": 101,
     "note": "Invalid documents"
 }
-```
+
 Success Response:
-```json
+
 {
     "success": true,
     "message": "Provider rejected",
@@ -1477,9 +1475,9 @@ Request Body:
     "blocked": true,
     "note": "Policy violation"
 }
-```
-### Success Response:
-```json
+
+Success Response:
+
 {
     "success": true,
     "message": "Provider blocked",
@@ -1500,9 +1498,9 @@ Request Body:
     "providerId": 101,
     "userId": 201
 }
-```
-### Success Response:
-```json
+
+Success Response:
+
 {
     "success": true,
     "total": 1,
@@ -1526,9 +1524,9 @@ Request Body:
 {
     "reviewId": 301
 }
-```
+
 Success Response:
-```json
+
 {
     "success": true,
     "message": "Review approved",
@@ -1546,9 +1544,9 @@ Request Body:
     "reviewId": 301,
     "reason": "Inappropriate language"
 }
-```
-### Success Response:
-```json
+
+Success Response:
+
 {
     "success": true,
     "message": "Review rejected",
@@ -1567,9 +1565,9 @@ Request Body:
 {
     "reviewId": 301
 }
-```
-### Success Response:
-```json
+
+Success Response:
+
 {
     "success": true,
     "message": "Review deleted"
@@ -1588,9 +1586,8 @@ Request Body:
     "from": "2026-01-01",
     "to": "2026-12-31"
 }
-```
+
 Success Response:
-```json
 
 {
     "success": true,
@@ -1613,9 +1610,9 @@ Request Body:
 {
     "bookingId": 501
 }
-```
-### Success Response:
-```json
+
+Success Response:
+
 {
     "success": true,
     "booking": {
@@ -1642,9 +1639,8 @@ pending
 confirmed
 completed
 cancelled
-```
-### Success Response:
-```json
+
+Success Response:
 
 {
     "success": true,
@@ -1664,9 +1660,9 @@ Request Body:
     "bookingId": 501,
     "reason": "Customer request"
 }
-```
-### Success Response:
-```json
+
+Success Response:
+
 {
 "success": true,
     "message": "Booking cancelled",
