@@ -774,10 +774,10 @@ Request Body
 ```json
 
 {
-  "name": "Kusuma Yekula",
-  "email": "kusuma@example.com",
-  "password": "123456",
-  "role": "user",
+  "name": "Kusuma Yekula", *
+  "email": "kusuma@example.com", *
+  "password": "123456", *
+  "role": "user",*
 
   "profile": {
     "avatar": "https://example.com/avatar.jpg",
@@ -785,10 +785,10 @@ Request Body
     "bio": "Looking for elderly care services"
   },
 
-  "address": "12-3-45, MG Road",
-  "city": "Hyderabad",
-  "postalCode": "500001",
-  "houseType": "Apartment",
+  "address": "12-3-45, MG Road", *
+  "city": "Hyderabad",*
+  "postalCode": "500001",*
+  "houseType": "Apartment",*
   "floorNumber": "3",
   "hasLift": true,
   "petsAtHome": false,
@@ -798,30 +798,30 @@ Request Body
     "coordinates": [78.4867, 17.3850]
   },
 
-  "bookingFor": "Father",
-  "recipientName": "Ramesh Yekula",
-  "recipientAge": 72,
-  "recipientGender": "Male",
+  "bookingFor": "Father",*
+  "recipientName": "Ramesh Yekula",*
+  "recipientAge": 72,*
+  "recipientGender": "Male",*
   "height": "5.6ft",
   "weight": "70kg",
-  "medicalConditions": ["Diabetes", "BP"],
+  "medicalConditions": ["Diabetes", "BP"],*
   "allergies": "Penicillin",
   "currentMedications": "Insulin",
-  "mobilityStatus": "Needs support",
+  "mobilityStatus": "Needs support",*
   "requiresMedicalEquipment": true,
   "equipmentDetails": "Wheelchair",
   "mentalCondition": "Normal",
   "specialInstructions": "Needs morning assistance",
 
-  "preferredCareTypes": ["Elderly Care"],
-  "careShift": "Day",
-  "careFrequency": "Daily",
+  "preferredCareTypes": ["Elderly Care"],*
+  "careShift": "Day",*
+  "careFrequency": "Daily",*
   "preferredCaregiverGender": "Female",
-  "languagesPreferred": ["Telugu", "English"],
+  "languagesPreferred": ["Telugu", "English"],*
 
-  "emergencyContactName": "Suresh",
-  "emergencyContactPhone": "9876543211",
-  "relationship": "Son",
+  "emergencyContactName": "Suresh",*
+  "emergencyContactPhone": "9876543211",*
+  "relationship": "Son",*
 
   "isProfileCompleted": true
 }
@@ -830,7 +830,7 @@ Success Response
 
 {
     "success": true,
-    "message": "Profile updated successfully",
+    "message": "Profile created successfully",
     "profile": {
         "locationGeo": {
             "type": "Point",
