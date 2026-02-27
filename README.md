@@ -773,65 +773,129 @@ Request Body
 
 ```json
 
-KEY	TYPE	VALUE
-photo	File	(choose image file)
-name	Text	Kusuma
-phone	Text	9876543210
-bio	Text	Need care service
-address	Text	Hitech City
-city	Text	Hyderabad
-postalCode	Text	500081
-recipientName	Text	Ramesh
-recipientAge	Text	65
-recipientGender	Text	Male
-mobilityStatus	Text	Wheelchair
-equipmentDetails	Text	Oxygen Cylinder
-emergencyContactName	Text	Naveen
-emergencyContactPhone	Text	9988776655
-medicalConditions	Text	["Diabetes","BP"]
-preferredCareTypes	Text	["Domiciliary Care","Respite Care"]
-languagesPreferred	Text	["English","Telugu"]
-```
-```
+{
+  "name": "Kusuma Yekula",
+  "email": "kusuma@example.com",
+  "password": "123456",
+  "role": "user",
+
+  "profile": {
+    "avatar": "https://example.com/avatar.jpg",
+    "phone": "9876543210",
+    "bio": "Looking for elderly care services"
+  },
+
+  "address": "12-3-45, MG Road",
+  "city": "Hyderabad",
+  "postalCode": "500001",
+  "houseType": "Apartment",
+  "floorNumber": "3",
+  "hasLift": true,
+  "petsAtHome": false,
+
+  "locationGeo": {
+    "type": "Point",
+    "coordinates": [78.4867, 17.3850]
+  },
+
+  "bookingFor": "Father",
+  "recipientName": "Ramesh Yekula",
+  "recipientAge": 72,
+  "recipientGender": "Male",
+  "height": "5.6ft",
+  "weight": "70kg",
+  "medicalConditions": ["Diabetes", "BP"],
+  "allergies": "Penicillin",
+  "currentMedications": "Insulin",
+  "mobilityStatus": "Needs support",
+  "requiresMedicalEquipment": true,
+  "equipmentDetails": "Wheelchair",
+  "mentalCondition": "Normal",
+  "specialInstructions": "Needs morning assistance",
+
+  "preferredCareTypes": ["Elderly Care"],
+  "careShift": "Day",
+  "careFrequency": "Daily",
+  "preferredCaregiverGender": "Female",
+  "languagesPreferred": ["Telugu", "English"],
+
+  "emergencyContactName": "Suresh",
+  "emergencyContactPhone": "9876543211",
+  "relationship": "Son",
+
+  "isProfileCompleted": true
+}
+
 Success Response
 
 {
-  "success": true,
-  "message": "Profile saved successfully",
-  "profile": {
-    "_id": "65d9f4c2b3a1f123456789ab",
-    "userId": 408,
-    "role": "user",
-    "name": "Kusuma",
-    "email": "kusuma@gmail.com",
-    "address": "Hitech City",
-    "city": "Hyderabad",
-    "postalCode": "500081",
-    "recipientName": "Ramesh",
-    "recipientAge": 65,
-    "recipientGender": "Male",
-    "mobilityStatus": "Wheelchair",
-    "equipmentDetails": "Oxygen Cylinder",
-    "emergencyContactName": "Naveen",
-    "emergencyContactPhone": "9988776655",
-    "medicalConditions": ["Diabetes", "BP"],
-    "preferredCareTypes": ["Domiciliary Care", "Respite Care"],
-    "languagesPreferred": ["English", "Telugu"],
-    "isProfileCompleted": true,
+    "success": true,
+    "message": "Profile updated successfully",
     "profile": {
-      "phone": "9876543210",
-      "bio": "Need care service",
-      "avatar": "https://your-s3-bucket-url/profile-photo.jpg"
-    },
-    "locationGeo": {
-      "type": "Point",
-      "coordinates": [78.3856, 17.4474]
-    },
-    "createdAt": "2026-02-18T10:30:00.000Z",
-    "updatedAt": "2026-02-18T10:40:00.000Z"
-  }
+        "locationGeo": {
+            "type": "Point",
+            "coordinates": [
+                78.4867,
+                17.385
+            ]
+        },
+        "_id": "699548fa8086ecea20c53b96",
+        "userId": 329,
+        "name": "Kusuma Yekula",
+        "email": "kusuma@example.com",
+        "password": "123456",
+        "role": "user",
+        "otp": null,
+        "otpExpire": null,
+        "isVerified": true,
+        "address": "12-3-45, MG Road",
+        "city": "Hyderabad",
+        "postalCode": "500001",
+        "houseType": "Apartment",
+        "floorNumber": "3",
+        "hasLift": true,
+        "petsAtHome": false,
+        "bookingFor": "Father",
+        "recipientName": "Ramesh Yekula",
+        "recipientAge": 72,
+        "recipientGender": "Male",
+        "height": "5.6ft",
+        "weight": "70kg",
+        "medicalConditions": [
+            "Diabetes",
+            "BP"
+        ],
+        "allergies": "Penicillin",
+        "currentMedications": "Insulin",
+        "mobilityStatus": "Needs support",
+        "requiresMedicalEquipment": true,
+        "equipmentDetails": "Wheelchair",
+        "mentalCondition": "Normal",
+        "specialInstructions": "Needs morning assistance",
+        "preferredCareTypes": [
+            "Elderly Care"
+        ],
+        "careShift": "Day",
+        "careFrequency": "Daily",
+        "preferredCaregiverGender": "Female",
+        "languagesPreferred": [
+            "Telugu",
+            "English"
+        ],
+        "emergencyContactName": "Suresh",
+        "emergencyContactPhone": "9876543211",
+        "relationship": "Son",
+        "isProfileCompleted": true,
+        "createdAt": "2026-02-18T05:07:07.005Z",
+        "updatedAt": "2026-02-27T08:04:29.230Z",
+        "__v": 3,
+        "profile": {
+            "avatar": "https://example.com/avatar.jpg",
+            "phone": "9876543210",
+            "bio": "Looking for elderly care services"
+        }
+    }
 }
-
 
 ```
 ### 21. `GET /api/user/profile` — Get user profile  
