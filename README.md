@@ -976,7 +976,7 @@ Success Response
 
 ```
 
-### 22. `GET /api/user/profile/check` — user can flag the review 
+### 22. `GET /api/user/profile/check` — User can check their profile  
 
 This is api is for checking user profile creation completed or not. User Access token as a bearer token. For this we no need any data as a body.
 
