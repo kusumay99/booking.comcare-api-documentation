@@ -1190,6 +1190,180 @@ Success Response
 }
 
 ```
+### 28. `GET /api/chat/user` — Getting user chat
+
+We no need any body format just user authorization bearer only we need after that we can get the login user chat.
+
+Request Body
+
+```json
+
+Success Response
+
+{
+    "success": true,
+    "chats": []
+}
+
+```
+
+### 29. `PGET /api/chat/provider` — Getting provider chat
+
+We no need any body format just provider authorization bearer only we need after that we can get the login provieder chat.
+
+Request Body
+
+```json
+
+Success Response
+
+{
+    "success": true,
+    "chats": [
+        {
+            "_id": "6994aa6687d82f7a9684caf7",
+            "chatId": 1,
+            "providerId": 7751,
+            "userId": 888,
+            "lastMessage": "Book Now",
+            "messages": [
+                {
+                    "sender": "provider",
+                    "type": "template",
+                    "text": "👋 Hi, I am interested in providing care for you.",
+                    "_id": "6994aa6687d82f7a9684caf8",
+                    "createdAt": "2026-02-17T17:50:30.052Z"
+                },
+                {
+                    "sender": "user",
+                    "type": "reply",
+                    "text": "Yes, I'm interested",
+                    "_id": "6994ab4187d82f7a9684cafc",
+                    "createdAt": "2026-02-17T17:54:09.066Z"
+                },
+                {
+                    "sender": "provider",
+                    "type": "action",
+                    "text": "Book Now",
+                    "action": "BOOK_NOW",
+                    "_id": "6994abd687d82f7a9684cb01",
+                    "createdAt": "2026-02-17T17:56:38.449Z"
+                }
+            ],
+            "createdAt": "2026-02-17T17:50:30.066Z",
+            "updatedAt": "2026-02-17T17:56:38.451Z",
+            "__v": 2
+        },
+        {
+            "_id": "69955d9c40d6d54d72719d83",
+            "chatId": 2,
+            "providerId": 7751,
+            "userId": 329,
+            "lastMessage": "Book Now",
+            "messages": [
+                {
+                    "sender": "provider",
+                    "type": "template",
+                    "text": "👋 Hi, I am interested in providing care for you.",
+                    "_id": "69955d9c40d6d54d72719d84",
+                    "createdAt": "2026-02-18T06:35:08.400Z"
+                },
+                {
+                    "sender": "user",
+                    "type": "reply",
+                    "text": "Yes, I'm interested",
+                    "_id": "69955e1d40d6d54d72719d88",
+                    "createdAt": "2026-02-18T06:37:17.567Z"
+                },
+                {
+                    "sender": "provider",
+                    "type": "action",
+                    "text": "Book Now",
+                    "action": "BOOK_NOW",
+                    "_id": "69955e5b40d6d54d72719d8d",
+                    "createdAt": "2026-02-18T06:38:19.261Z"
+                }
+            ],
+            "createdAt": "2026-02-18T06:35:08.429Z",
+            "updatedAt": "2026-02-18T06:38:19.278Z",
+            "__v": 2
+        },
+        {
+            "_id": "69956685c98a4f9ffd163b17",
+            "chatId": 3,
+            "providerId": 7751,
+            "userId": 329,
+            "lastMessage": "Book Now",
+            "messages": [
+                {
+                    "sender": "provider",
+                    "type": "template",
+                    "text": "👋 Hi, I am interested in providing care for you.",
+                    "_id": "69956685c98a4f9ffd163b18",
+                    "createdAt": "2026-02-18T07:13:09.596Z"
+                },
+                {
+                    "sender": "user",
+                    "type": "reply",
+                    "text": "Yes, I'm interested",
+                    "_id": "699566eac98a4f9ffd163b1c",
+                    "createdAt": "2026-02-18T07:14:50.406Z"
+                },
+                {
+                    "sender": "provider",
+                    "type": "action",
+                    "text": "Book Now",
+                    "action": "BOOK_NOW",
+                    "_id": "69956712c98a4f9ffd163b21",
+                    "createdAt": "2026-02-18T07:15:30.074Z"
+                }
+            ],
+            "createdAt": "2026-02-18T07:13:09.663Z",
+            "updatedAt": "2026-02-18T07:15:30.087Z",
+            "__v": 2
+        },
+        {
+            "_id": "699684844b052945cbd56866",
+            "chatId": 4,
+            "providerId": 7751,
+            "userId": 329,
+            "lastMessage": "Book Now",
+            "messages": [
+                {
+                    "sender": "provider",
+                    "type": "template",
+                    "text": "👋 Hi, I am interested in providing care for you.",
+                    "_id": "699684844b052945cbd56867",
+                    "createdAt": "2026-02-19T03:33:24.716Z"
+                },
+                {
+                    "sender": "user",
+                    "type": "reply",
+                    "text": "Yes, I'm interested",
+                    "_id": "699687314b052945cbd5686b",
+                    "createdAt": "2026-02-19T03:44:49.146Z"
+                },
+                {
+                    "sender": "provider",
+                    "type": "action",
+                    "text": "Book Now",
+                    "action": "BOOK_NOW",
+                    "_id": "699687cb4b052945cbd56870",
+                    "createdAt": "2026-02-19T03:47:23.410Z"
+                }
+            ],
+            "createdAt": "2026-02-19T03:33:24.730Z",
+            "updatedAt": "2026-02-19T03:47:23.414Z",
+            "__v": 2
+        }
+    ]
+}
+
+```
+# Posts Endpoints
+
+---
+
 ### 23. `POST /api/chat/templates/provider` — Getting provider tamplet while chatting
 
 Getting provider messages tamplets to send automatic messages. Provider access token will work on authorization bearer.
@@ -1210,6 +1384,9 @@ Success Response
 }
 
 ```
+# Posts Endpoints
+
+---
 
 ### 23. `POST /api/chat/templates/provider` — Getting provider tamplet while chatting
 
