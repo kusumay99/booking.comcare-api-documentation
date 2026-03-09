@@ -10,6 +10,8 @@ https://api.nursingcarebooking.com
 
 ## 📬 Endpoints Overview
 
+## Authentication End Points
+
 ### 1. `POST /api/auth/register` — Register 
 
 Registers a new User or Provider by sending OTP to email.
@@ -171,11 +173,11 @@ Success Response
 
 ```
 
-# Provider Endpoints
+## Provider Endpoints
 
 ---
 
-### 20. `POST /api/provider/create` — Create Provider Profile
+### 1. `POST /api/provider/create` — Create Provider Profile
 
 Create or complete provider profile with details, images and geo location.  
 This endpoint accepts **multipart/form-data**.  
@@ -217,7 +219,7 @@ pictures → up to 5 images
 
 ---
 
-### 21. `GET /api/provider/providers` — Get All Providers
+### 2. `GET /api/provider/providers` — Get All Providers
 
 Fetch providers with pagination and search.
 
@@ -244,7 +246,7 @@ Fetch providers with pagination and search.
 
 ---
 
-### 22. `POST /api/provider/profile/providerid` — Get Provider Profile
+### 3. `POST /api/provider/profile/providerid` — Get Provider Profile
 
 Authorization: Bearer Token
 
@@ -267,7 +269,7 @@ Authorization: Bearer Token
 
 ---
 
-### 23. `PUT /api/provider/profile` — Update Provider Profile
+### 4. `PUT /api/provider/profile` — Update Provider Profile
 
 Update provider profile (partial update supported).  
 Accepts multipart/form-data.  
@@ -296,7 +298,7 @@ serviceRadiusKm: 15
 
 ---
 
-### 24. `DELETE /api/provider/profile` — Delete Provider Profile
+### 5. `DELETE /api/provider/profile` — Delete Provider Profile
 
 Deletes provider profile and all S3 images.  
 Authorization: Bearer Token
@@ -320,7 +322,7 @@ Authorization: Bearer Token
 
 ---
 
-### 25. `POST /api/provider/search` — Geo Search Providers
+### 6. `POST /api/provider/search` — Geo Search Providers
 
 Find nearby providers using GPS or Address.
 
@@ -419,7 +421,7 @@ db.providersTree.createIndex({ locationGeo: "2dsphere" })
 
 # Booking Endpoints
 
-### 12. `POST /api/booking/create` — Create Booking
+### 1. `POST /api/booking/create` — Create Booking
 
 Allows a User to create a new booking request for a provider.
 User profile must be completed.
@@ -474,7 +476,7 @@ Request Body
 ```
 
 
-### 13. `PUT /api/booking/accept` — Accepting Booking
+### 2. `PUT /api/booking/accept` — Accepting Booking
 
 After user booking service user if care provider wants to accept. To accept booking also we need provider access token as a authorization bearer.
 
@@ -508,7 +510,7 @@ Success Response
 
 ```
 
-### 14. `PUT /api/booking/reject` — Rejecting booking
+### 3. `PUT /api/booking/reject` — Rejecting booking
 
 If anything wrong provider can reject booking along with reason. For this we need user Access Token as a authorization Brarer.
 
@@ -544,7 +546,7 @@ Success Response
 
 ```
 
-### 15. `PUT /api/booking/cancel` — User cancel booking
+### 4. `PUT /api/booking/cancel` — User cancel booking
 
 If user booked services if they want cancel again they can use this 
 
@@ -580,7 +582,7 @@ Success Response
 
 ```
 
-### 16. `PUT /api/booking/complete` — Provider Completed Booking
+### 5. `PUT /api/booking/complete` — Provider Completed Booking
 
 If user booked services if they want cancel again they can use this 
 
@@ -616,7 +618,7 @@ Success Response
 
 ```
 
-### 17. `POST /api/booking/details` — getting details by bookingId
+### 6. `POST /api/booking/details` — getting details by bookingId
 
 If user booked services if they want cancel again they can use this 
 
@@ -653,7 +655,7 @@ Success Response
 
 # Review Endpoints
 
-### 17. `POST /api/review/add` — Create Review by Booking Id
+### 1. `POST /api/review/add` — Create Review by Booking Id
 
 This is for giiving rating along with comment for the care provider. Service User access token as a Authorization Token. 
 
@@ -693,7 +695,7 @@ Success Response
 
 ```
 
-### 18. `POST /api/review/provider` — Provider can see theire reviews
+### 2. `POST /api/review/provider` — Provider can see theire reviews
 
 This is for getting review along with comment for the care provider.
 
@@ -728,7 +730,7 @@ Success Response
 
 ```
 
-### 19. `PUT /api/review/flag` — user can flag the review 
+### 3. `PUT /api/review/flag` — user can flag the review 
 
 If anything wrong with provider service user can flag the service. Provider Access token as a bearer token. 
 
@@ -765,7 +767,9 @@ Success Response
 
 ```
 
-### 20. `POST /api/user/profile` — user can create their profile 
+# User Endpoints
+
+### 1. `POST /api/user/profile` — user can create their profile 
 
 This is for user can create their profile. User Access token as a bearer token. 
 
@@ -898,7 +902,7 @@ Success Response
 }
 
 ```
-### 21. `GET /api/user/profile` — Get user profile  
+### 2. `GET /api/user/profile` — Get user profile  
 
 This is for getting user profile. User Access token as a bearer token. For this we no need any body data.
 
@@ -976,7 +980,7 @@ Success Response
 
 ```
 
-### 22. `GET /api/user/profile/check` — User can check their profile  
+### 3. `GET /api/user/profile/check` — User can check their profile  
 
 This is api is for checking user profile creation completed or not. User Access token as a bearer token. For this we no need any data as a body.
 
@@ -1007,8 +1011,9 @@ Success Response
 }
 
 ```
+## Quickchat Endpoints
 
-### 23. `GET /api/chat/templates/provider` — Getting provider tamplet while chatting
+### 1. `GET /api/chat/templates/provider` — Getting provider tamplet while chatting
 
 Getting provider messages tamplets to send automatic messages. Provider access token will work on authorization bearer.
 
@@ -1029,7 +1034,7 @@ Success Response
 
 ```
 
-### 24. `GET /api/chat/templates/user` — Getting user tamplet while chatting
+### 2. `GET /api/chat/templates/user` — Getting user tamplet while chatting
 
 Getting user messages tamplets to send automatic messages. user access token will work on authorization bearer.
 
@@ -1049,7 +1054,7 @@ Success Response
 }
 
 ```
-### 25. `POST /api/chat/provider/start` — Start messaging by care provider
+### 3. `POST /api/chat/provider/start` — Start messaging by care provider
 
 
 Sending first automatic message by provider. Provider access token will work on authorization bearer.
@@ -1090,7 +1095,7 @@ Success Response
 
 ```
 
-### 26. `POST /api/chat/user/reply` — Sending reply by user
+### 4. `POST /api/chat/user/reply` — Sending reply by user
 
 Sending reply by user to automatic message by provider. user access token will work on authorization bearer.
 
@@ -1137,7 +1142,7 @@ Success Response
 
 ```
 
-### 27. `POST /api/chat/provider/booknow` — Booking Care
+### 5. `POST /api/chat/provider/booknow` — Booking Care
 
 This is for booking slot os CQC care. 
 
@@ -1190,7 +1195,7 @@ Success Response
 }
 
 ```
-### 28. `GET /api/chat/user` — Getting user chat
+### 6. `GET /api/chat/user` — Getting user chat
 
 We no need any body format just user authorization bearer only we need after that we can get the login user chat.
 
@@ -1207,7 +1212,7 @@ Success Response
 
 ```
 
-### 29. `PGET /api/chat/provider` — Getting provider chat
+### 7. `PGET /api/chat/provider` — Getting provider chat
 
 We no need any body format just provider authorization bearer only we need after that we can get the login provieder chat.
 
@@ -1362,57 +1367,7 @@ Success Response
 ```
 # Posts Endpoints
 
----
-
-### 23. `POST /api/chat/templates/provider` — Getting provider tamplet while chatting
-
-Getting provider messages tamplets to send automatic messages. Provider access token will work on authorization bearer.
-
-Request Body
-
-```json
-
-Success Response
-
-{
-    "success": true,
-    "templates": [
-        "👋 Hi, We are interested in providing care for you.",
-        "We are available for your requested care service.",
-        "We match your care requirements."
-    ]
-}
-
-```
-# Posts Endpoints
-
----
-
-### 23. `POST /api/chat/templates/provider` — Getting provider tamplet while chatting
-
-Getting provider messages tamplets to send automatic messages. Provider access token will work on authorization bearer.
-
-Request Body
-
-```json
-
-Success Response
-
-{
-    "success": true,
-    "templates": [
-        "👋 Hi, We are interested in providing care for you.",
-        "We are available for your requested care service.",
-        "We match your care requirements."
-    ]
-}
-
-```
-# Posts Endpoints
-
----
-
-### 28. `POST /api/posts/create` — Create Care Request Post
+### 1. `POST /api/posts/create` — Create Care Request Post
 
 Create a new care request post.  
 Only **Service User** can create posts.  
@@ -1453,7 +1408,7 @@ Content-Type: multipart/form-data
   }
 }
 ```
-### 29.`PUT /api/posts/update ` — Update Post
+### 2.`PUT /api/posts/update ` — Update Post
 
 Update an existing post.
 Only Post Owner can update.
@@ -1483,7 +1438,7 @@ photo	❌
   "post": {}
 }
 ```
-### 30. `DELETE /api/posts/delete `— Delete Post
+### 3. `DELETE /api/posts/delete `— Delete Post
 
 Delete post and its S3 image.
 Only Post Owner can delete.
@@ -1502,7 +1457,7 @@ Success Response
   "message": "Post deleted successfully"
 }
 ```
-### 31. GET /api/posts/all — Get All Active Posts
+### 4. GET /api/posts/all — Get All Active Posts
 
 Fetch all active care request posts.
 Accessible by Users & Providers.
@@ -1518,7 +1473,7 @@ Authorization: Bearer Token
 
 Sorted by newest first.
 ```
-### 32.` GET /api/posts/my-posts` — Get My Posts
+### 5.` GET /api/posts/my-posts` — Get My Posts
 
 Fetch posts created by logged-in user.
 Only Service User can access.
@@ -1546,7 +1501,7 @@ Authorization: User Access Token (Bearer)
 AUTHENTICATION
 
 
-### 34 POST /admin/send-otp - SEND OTP
+### 1 POST /admin/send-otp - SEND OTP
 Access: Public
 
 ```json
@@ -1572,7 +1527,7 @@ Error Response:
 }
 ```
 
-### 35 POST /admin/verify-otp - VERIFY OTP
+### 2 POST /admin/verify-otp - VERIFY OTP
 Access: Public
 
 Request Body:
@@ -1610,7 +1565,7 @@ Authorization: Bearer YOUR_ADMIN_TOKEN
 Content-Type: application/json
 
 
-### 36 POST /admin/providers/list - GET PROVIDERS LIST
+### 3 POST /admin/providers/list - GET PROVIDERS LIST
 
 Request Body:
 ```json
@@ -1640,7 +1595,7 @@ Success Response:
         }
 }
 ```
-### 37 POST /admin/providers/details - GET PROVIDER DETAILS
+### 4 POST /admin/providers/details - GET PROVIDER DETAILS
 
 Request Body:
 ```json
@@ -1663,7 +1618,7 @@ Success Response:
     }
 }
 ```
-### 38 POST /admin/providers/verify - VERIFY PROVIDER
+### 5 POST /admin/providers/verify - VERIFY PROVIDER
 
 Request Body:
 ```json
@@ -1685,7 +1640,7 @@ Success Response:
         }
 }
 ```
-### 39 POST /admin/providers/reject - REJECT PROVIDER
+### 6 POST /admin/providers/reject - REJECT PROVIDER
 
 Request Body:
 ```json
@@ -1707,7 +1662,7 @@ Success Response:
         }
 }
 ```
-### 40 POST /admin/providers/block - BLOCK / UNBLOCK PROVIDER
+### 7 POST /admin/providers/block - BLOCK / UNBLOCK PROVIDER
 
 Request Body:
 ```json
@@ -1728,9 +1683,8 @@ Success Response:
     }
 }
 ```
-## REVIEW MODERATION
 
-### 41 POST /admin/reviews/list - GET REVIEWS
+### 8 POST /admin/reviews/list - GET REVIEWS
 
 Request Body:
 ```json
@@ -1758,7 +1712,7 @@ Success Response:
     ]
 }
 ````
-### 42 POST /admin/reviews/approve - APPROVE REVIEW
+### 9 POST /admin/reviews/approve - APPROVE REVIEW
 
 Request Body:
 ```json
@@ -1777,7 +1731,7 @@ Success Response:
     }
 }
 ```
-### 43 POST /admin/reviews/reject - REJECT REVIEW
+### 10 POST /admin/reviews/reject - REJECT REVIEW
 
 Request Body:
 ```json
@@ -1798,7 +1752,7 @@ Success Response:
     }
 }
 ```
-### 44 POST /admin/reviews/delete - DELETE REVIEW
+### 11 POST /admin/reviews/delete - DELETE REVIEW
 
 Request Body:
 ```json
@@ -1814,9 +1768,8 @@ Success Response:
     "message": "Review deleted"
 }
 ```
-## BOOKING MANAGEMENT
 
-### 45 POST /admin/bookings/list - GET BOOKINGS
+### 12 POST /admin/bookings/list - GET BOOKINGS
 
 Request Body:
 ```json
@@ -1844,7 +1797,7 @@ Success Response:
     ]
 }
 ```
-### 46 POST /admin/bookings/details - GET BOOKING DETAILS
+### 13 POST /admin/bookings/details - GET BOOKING DETAILS
 
 Request Body:
 ```json
@@ -1865,7 +1818,7 @@ Success Response:
     }
 }
 ```
-### 47 POST /admin/bookings/update-status - UPDATE BOOKING STATUS
+### 14 POST /admin/bookings/update-status - UPDATE BOOKING STATUS
 
 Request Body:
 ```json
@@ -1893,7 +1846,7 @@ Success Response:
 }
 ```
 
-### 48 POST /admin/bookings/cancel - CANCEL BOOKING
+### 15 POST /admin/bookings/cancel - CANCEL BOOKING
 
 Request Body:
 ```json
@@ -1915,9 +1868,7 @@ Success Response:
 }
 ```
 
-## DASHBOARD
-
-### 49 GET /admin/dashboard/stats - DASHBOARD STATS
+### 16 GET /admin/dashboard/stats - DASHBOARD STATS
 
 Success Response:
 {
