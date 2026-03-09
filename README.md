@@ -1358,7 +1358,7 @@ Success Response
 ```
 # Posts Endpoints
 
-### 1. `POST /api/posts/create` — Create Care Request Post
+### 1. `POST /api/post/create` — Create Care Request Post
 
 Create a new care request post.  
 Only **Service User** can create posts.  
@@ -1399,7 +1399,7 @@ Content-Type: multipart/form-data
   }
 }
 ```
-### 2.`PUT /api/posts/update ` — Update Post
+### 2.`PUT /api/post/update ` — Update Post
 
 Update an existing post.
 Only Post Owner can update.
@@ -1429,7 +1429,7 @@ photo	❌
   "post": {}
 }
 ```
-### 3. `DELETE /api/posts/delete `— Delete Post
+### 3. `DELETE /api/post/delete `— Delete Post
 
 Delete post and its S3 image.
 Only Post Owner can delete.
@@ -1448,7 +1448,7 @@ Success Response
   "message": "Post deleted successfully"
 }
 ```
-### 4. GET /api/posts/all — Get All Active Posts
+### 4. GET /api/post/all — Get All Active Posts
 
 Fetch all active care request posts.
 Accessible by Users & Providers.
@@ -1464,7 +1464,7 @@ Authorization: Bearer Token
 
 Sorted by newest first.
 ```
-### 5.` GET /api/posts/my-posts` — Get My Posts
+### 5.` GET /api/post/my-posts` — Get My Posts
 
 Fetch posts created by logged-in user.
 Only Service User can access.
