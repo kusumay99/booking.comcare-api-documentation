@@ -207,7 +207,7 @@ pictures → up to 5 images
 
 ⭐ If latitude & longitude are not provided → system auto-detects from address/postalCode/city.
 
-#### Success Response
+Success Response
 
 ```json
 {
@@ -230,11 +230,9 @@ Fetch providers with pagination and search.
 &limit=10
 &typeOfCare=Dementia Care
 &search=john
-```
 
-#### Success Response
+Success Response
 
-```json
 {
   "success": true,
   "totalProviders": 25,
@@ -256,18 +254,15 @@ Authorization: Bearer Token
 {
   "providerId": 4283
 }
-```
 
-#### Success Response
+Success Response
 
-```json
 {
   "success": true,
   "provider": {}
 }
 ```
 
----
 
 ### 4. `PUT /api/provider/profile` — Update Provider Profile
 
@@ -275,7 +270,7 @@ Update provider profile (partial update supported).
 Accepts multipart/form-data.  
 Authorization: Bearer Token
 
-#### Request Body
+Request Body
 
 ```
 providerId: 4283
@@ -286,7 +281,7 @@ serviceRadiusKm: 15
 ✔ Replace images automatically  
 ✔ Auto geocode if address updated  
 
-#### Success Response
+Success Response
 
 ```json
 {
@@ -303,17 +298,16 @@ serviceRadiusKm: 15
 Deletes provider profile and all S3 images.  
 Authorization: Bearer Token
 
-#### Request Body
+Request Body
 
 ```json
 {
   "providerId": 4283
 }
-```
 
-#### Success Response
 
-```json
+Success Response
+
 {
   "success": true,
   "message": "Provider profile along with images deleted successfully"
@@ -374,11 +368,8 @@ Final sorting:
 rankScore DESC → distance ASC
 ```
 
----
+Success Response
 
-#### Success Response
-
-```json
 {
   "success": true,
   "searchCenter": {
