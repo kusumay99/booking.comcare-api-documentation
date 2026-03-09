@@ -1875,3 +1875,169 @@ Success Response:
         "totalRevenue": 125000
     }
 }
+
+##     Notification Endpoints
+
+### 1 GET /web-notification - Getting notification of login person
+
+We no need any body just we need only access token of user or provider for getting their notification 
+
+Request Body:
+```json
+
+Success Response:
+
+{
+    "success": true,
+    "role": "user",
+    "recipientId": 587,
+    "notifications": [
+        {
+            "_id": "69aa6882a52d7ebec0bc9d6d",
+            "recipient": 587,
+            "sender": 7751,
+            "type": "BOOKING_COMPLETED",
+            "title": "Booking Completed",
+            "message": "Your booking 21 has been completed",
+            "link": "/bookings/21",
+            "isRead": false,
+            "createdAt": "2026-03-06T05:39:14.496Z",
+            "updatedAt": "2026-03-06T05:39:14.496Z",
+            "notificationId": 10,
+            "__v": 0
+        },
+        {
+            "_id": "69aa683de023d2a9ad17fef1",
+            "recipient": 587,
+            "sender": 7751,
+            "type": "BOOKING_COMPLETED",
+            "title": "Booking Completed",
+            "message": "Your booking 20 has been completed",
+            "link": "/bookings/20",
+            "isRead": false,
+            "createdAt": "2026-03-06T05:38:05.638Z",
+            "updatedAt": "2026-03-06T05:38:05.638Z",
+            "notificationId": 9,
+            "__v": 0
+        },
+        {
+            "_id": "69aa6511eb7f734d27a3634a",
+            "recipient": 587,
+            "sender": 7751,
+            "type": "BOOKING_REJECTED",
+            "title": "Booking Not Approved",
+            "message": "Booking 25 not approved",
+            "link": "/bookings/25",
+            "isRead": false,
+            "createdAt": "2026-03-06T05:24:33.835Z",
+            "updatedAt": "2026-03-06T05:24:33.835Z",
+            "notificationId": 6,
+            "__v": 0
+        },
+        {
+            "_id": "69aa64ac0bfdf945789ad23e",
+            "recipient": 587,
+            "sender": 7751,
+            "type": "BOOKING_REJECTED",
+            "title": "Booking Rejected",
+            "message": "Booking 24 rejected",
+            "link": "/bookings/24",
+            "isRead": false,
+            "createdAt": "2026-03-06T05:22:52.219Z",
+            "updatedAt": "2026-03-06T05:22:52.219Z",
+            "notificationId": 5,
+            "__v": 0
+        },
+        {
+            "_id": "69aa5f6b10342c734760bbb2",
+            "recipient": 587,
+            "sender": 7751,
+            "type": "BOOKING_APPROVED",
+            "title": "Booking Approved",
+            "message": "Your booking 23 has been approved",
+            "link": "/bookings/23",
+            "isRead": false,
+            "createdAt": "2026-03-06T05:00:27.732Z",
+            "updatedAt": "2026-03-06T05:00:27.732Z",
+            "notificationId": 4,
+            "__v": 0
+        },
+        {
+            "_id": "69aa5f3b501ce912fbcc9d5e",
+            "recipient": 587,
+            "sender": 7751,
+            "type": "BOOKING_APPROVED",
+            "title": "Booking Approved",
+            "message": "Your booking 22 has been approved",
+            "link": "/bookings/22",
+            "isRead": false,
+            "createdAt": "2026-03-06T04:59:39.766Z",
+            "updatedAt": "2026-03-06T04:59:39.766Z",
+            "notificationId": 3,
+            "__v": 0
+        }
+    ],
+    "unreadCount": 6
+}
+```
+
+### 2 PUT /web-notification/read/69aa6882a52d7ebec0bc9d6d - Marking read a single notification by notification id 
+
+We no need any body just we need  notification id by end points along with access token
+
+Request Body:
+```json
+
+Success Response:
+
+{
+    "success": true,
+    "message": "Notification marked as read",
+    "notification": {
+        "_id": "69aa6882a52d7ebec0bc9d6d",
+        "recipient": 587,
+        "sender": 7751,
+        "type": "BOOKING_COMPLETED",
+        "title": "Booking Completed",
+        "message": "Your booking 21 has been completed",
+        "link": "/bookings/21",
+        "isRead": true,
+        "createdAt": "2026-03-06T05:39:14.496Z",
+        "updatedAt": "2026-03-09T05:53:09.495Z",
+        "notificationId": 10,
+        "__v": 0
+    }
+}
+
+```
+
+### 3 PUT /web-notification/read-all - Marking read all notification 
+
+We no need any body just we need  access token
+
+Request Body:
+```json
+
+Success Response:
+
+{
+    "success": true,
+    "message": "All notifications marked as read"
+}
+
+```
+### 4 Delete /web-notification/69aa6882a52d7ebec0bc9d6d - Deleting notification by notification id  
+
+We no need any body just we need  notification id by end points
+
+Request Body:
+```json
+
+Success Response:
+
+{
+    "success": true,
+    "message": "Notification deleted successfully"
+}
+
+```
