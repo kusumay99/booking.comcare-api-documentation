@@ -1492,7 +1492,7 @@ Authorization: User Access Token (Bearer)
 AUTHENTICATION
 
 
-### 1 POST /admin/send-otp - SEND OTP
+### 1 POST /api/admin/send-otp - SEND OTP
 Access: Public
 
 ```json
@@ -1518,7 +1518,7 @@ Error Response:
 }
 ```
 
-### 2 POST /admin/verify-otp - VERIFY OTP
+### 2 POST /api/admin/verify-otp - VERIFY OTP
 Access: Public
 
 Request Body:
@@ -1556,7 +1556,7 @@ Authorization: Bearer YOUR_ADMIN_TOKEN
 Content-Type: application/json
 
 
-### 3 POST /admin/providers/list - GET PROVIDERS LIST
+### 3 POST /api/admin/providers/list - GET PROVIDERS LIST
 
 Request Body:
 ```json
@@ -1586,7 +1586,7 @@ Success Response:
         }
 }
 ```
-### 4 POST /admin/providers/details - GET PROVIDER DETAILS
+### 4 POST /api/admin/providers/details - GET PROVIDER DETAILS
 
 Request Body:
 ```json
@@ -1609,7 +1609,7 @@ Success Response:
     }
 }
 ```
-### 5 POST /admin/providers/verify - VERIFY PROVIDER
+### 5 POST /api/admin/providers/verify - VERIFY PROVIDER
 
 Request Body:
 ```json
@@ -1631,7 +1631,7 @@ Success Response:
         }
 }
 ```
-### 6 POST /admin/providers/reject - REJECT PROVIDER
+### 6 POST /api/admin/providers/reject - REJECT PROVIDER
 
 Request Body:
 ```json
@@ -1653,7 +1653,7 @@ Success Response:
         }
 }
 ```
-### 7 POST /admin/providers/block - BLOCK / UNBLOCK PROVIDER
+### 7 POST /api/admin/providers/block - BLOCK / UNBLOCK PROVIDER
 
 Request Body:
 ```json
@@ -1675,7 +1675,7 @@ Success Response:
 }
 ```
 
-### 8 POST /admin/reviews/list - GET REVIEWS
+### 8 POST /api/admin/reviews/list - GET REVIEWS
 
 Request Body:
 ```json
@@ -1703,7 +1703,7 @@ Success Response:
     ]
 }
 ````
-### 9 POST /admin/reviews/approve - APPROVE REVIEW
+### 9 POST /api/admin/reviews/approve - APPROVE REVIEW
 
 Request Body:
 ```json
@@ -1722,7 +1722,7 @@ Success Response:
     }
 }
 ```
-### 10 POST /admin/reviews/reject - REJECT REVIEW
+### 10 POST /api/admin/reviews/reject - REJECT REVIEW
 
 Request Body:
 ```json
@@ -1743,7 +1743,7 @@ Success Response:
     }
 }
 ```
-### 11 POST /admin/reviews/delete - DELETE REVIEW
+### 11 POST /api/admin/reviews/delete - DELETE REVIEW
 
 Request Body:
 ```json
@@ -1760,7 +1760,7 @@ Success Response:
 }
 ```
 
-### 12 POST /admin/bookings/list - GET BOOKINGS
+### 12 POST /api/admin/bookings/list - GET BOOKINGS
 
 Request Body:
 ```json
@@ -1788,7 +1788,7 @@ Success Response:
     ]
 }
 ```
-### 13 POST /admin/bookings/details - GET BOOKING DETAILS
+### 13 POST /api/admin/bookings/details - GET BOOKING DETAILS
 
 Request Body:
 ```json
@@ -1809,7 +1809,7 @@ Success Response:
     }
 }
 ```
-### 14 POST /admin/bookings/update-status - UPDATE BOOKING STATUS
+### 14 POST /api/admin/bookings/update-status - UPDATE BOOKING STATUS
 
 Request Body:
 ```json
@@ -1837,7 +1837,7 @@ Success Response:
 }
 ```
 
-### 15 POST /admin/bookings/cancel - CANCEL BOOKING
+### 15 POST /api/admin/bookings/cancel - CANCEL BOOKING
 
 Request Body:
 ```json
@@ -1859,8 +1859,9 @@ Success Response:
 }
 ```
 
-### 16 GET /admin/dashboard/stats - DASHBOARD STATS
+### 16 GET /api/admin/dashboard/stats - DASHBOARD STATS
 
+```json
 Success Response:
 {
     "success": true,
@@ -1875,6 +1876,7 @@ Success Response:
         "totalRevenue": 125000
     }
 }
+```
 
 ##     Notification Endpoints
 
