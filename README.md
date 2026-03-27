@@ -608,7 +608,76 @@ Success Response
 }
 
 ```
+# Booking History APIs
 
+## Get User Booking History
+
+**Endpoint**
+
+GET /api/bookings/history/user
+
+**Headers**
+
+Authorization: Bearer <USER_TOKEN>
+
+**Description**
+
+Returns booking history for the logged-in user including provider details and appointment information.
+
+### Example Response
+
+```json
+{
+ "success": true,
+ "total": 1,
+ "bookings": [
+  {
+   "bookingId": 101,
+   "userId": 2001,
+   "providerId": 5001,
+   "userName": "Rahul",
+   "providerName": "Dr Kumar",
+   "serviceType": "Nursing Care",
+   "status": "Completed"
+  }
+ ]
+}
+```
+# Booking History APIs
+
+## Get User Booking History
+
+**Endpoint**
+
+GET /api/bookings/history/provider
+
+**Headers**
+
+Authorization: Bearer <PROVIDER_TOKEN>
+
+**Description**
+
+Returns booking history for the logged-in provider including user details and appointment information.
+
+### Example Response
+
+```json
+{
+ "success": true,
+ "total": 1,
+ "bookings": [
+  {
+   "bookingId": 101,
+   "userId": 2001,
+   "providerId": 5001,
+   "userName": "Rahul",
+   "providerName": "Dr Kumar",
+   "serviceType": "Nursing Care",
+   "status": "Completed"
+  }
+ ]
+}
+```
 ### 6. `POST /api/booking/details` — getting details by bookingId
 
 If user booked services if they want cancel again they can use this 
