@@ -2112,3 +2112,316 @@ Success Response:
 }
 
 ```
+## 🔐 Authentication
+
+All admin APIs require:
+
+```
+Authorization: Bearer <ADMIN_TOKEN>
+Content-Type: application/json
+```
+
+---
+
+# 📊 DASHBOARD APIs
+
+---
+
+## 1. Get Basic Dashboard Stats
+
+### Endpoint
+
+```
+GET /dashboard/stats
+```
+
+### Query Params (Optional)
+
+| Param     | Type   | Description |
+| --------- | ------ | ----------- |
+| startDate | String | YYYY-MM-DD  |
+| endDate   | String | YYYY-MM-DD  |
+
+### Example
+
+```
+GET /dashboard/stats?startDate=2026-03-01&endDate=2026-03-31
+```
+
+### Response
+
+```json
+{
+  "success": true,
+  "stats": {
+    "totalUsers": 100,
+    "totalProviders": 50,
+    "pendingProviders": 10,
+    "totalBookings": 200,
+    "pendingBookings": 20,
+    "totalPayments": 150,
+    "paidPayments": 120,
+    "totalRevenue": 50000,
+    "revenueTrend": [],
+    "bookingStatusStats": [],
+    "topProviders": [],
+    "failedPayments": 5,
+    "cancelledBookings": 8
+  }
+}
+```
+
+---
+
+## 2. Get Advanced Dashboard Stats
+
+### Endpoint
+
+```
+GET /dashboard/advanced-stats
+```
+
+### Query Params (Optional)
+
+| Param     | Type   | Description |
+| --------- | ------ | ----------- |
+| startDate | String | YYYY-MM-DD  |
+| endDate   | String | YYYY-MM-DD  |
+
+### Response Includes
+
+* Location stats
+* Avg completion time
+* Ratings analytics
+* Revenue trends
+
+---
+
+# 🗑 DELETE REQUEST APIs
+
+---
+
+## 3. Get All Delete Requests
+
+### Endpoint
+
+```
+GET /delete-requests
+```
+
+### Query Params
+
+| Param  | Type   | Description                   |
+| ------ | ------ | ----------------------------- |
+| status | String | pending / approved / rejected |
+
+### Example
+
+```
+GET /delete-requests?status=pending
+```
+
+---
+
+## 4. Search Delete Requests
+
+### Endpoint
+
+```
+GET /delete-requests/search
+```
+
+### Query Params
+
+| Param      | Type            |
+| ---------- | --------------- |
+| userId     | Number          |
+| providerId | Number          |
+| name       | String          |
+| status     | String          |
+| type       | user / provider |
+| page       | Number          |
+| limit      | Number          |
+
+### Example
+
+```
+GET /delete-requests/search?name=rahul&type=user&page=1
+```
+
+---
+
+## 5. Delete Requests Dashboard
+
+### Endpoint
+
+```
+GET /delete-requests/dashboard
+```
+
+### Query Params
+
+| Param     | Description               |
+| --------- | ------------------------- |
+| startDate | Date filter               |
+| endDate   | Date filter               |
+| status    | pending/approved/rejected |
+| type      | user/provider             |
+| page      | pagination                |
+| limit     | pagination                |
+
+---
+
+# ✅ ADMIN ACTION APIs
+
+---
+
+## 6. Approve Delete Request
+
+### Endpoint
+
+```
+POST /delete/approve
+```
+
+### Body
+
+```json
+{
+  "requestId": "65f1a2b3c4d5e6f789abcd12"
+}
+```
+
+### Response
+
+```json
+{
+  "success": true,
+  "message": "Account soft deleted successfully"
+}
+```
+
+---
+
+## 7. Reject Delete Request
+
+### Endpoint
+
+```
+POST /delete/reject
+```
+
+### Body
+
+```json
+{
+  "requestId": "65f1a2b3c4d5e6f789abcd12",
+  "reason": "Active bookings exist"
+}
+```
+
+---
+
+# ⚡ BULK ACTION APIs
+
+---
+
+## 8. Bulk Approve Delete Requests
+
+### Endpoint
+
+```
+POST /delete/bulk-approve
+```
+
+### Body
+
+```json
+{
+  "requestIds": [
+    "65f1a2b3c4d5e6f789abcd12",
+    "65f1a2b3c4d5e6f789abcd34"
+  ]
+}
+```
+
+---
+
+## 9. Bulk Reject Delete Requests
+
+### Endpoint
+
+```
+POST /delete/bulk-reject
+```
+
+### Body
+
+```json
+{
+  "requestIds": [
+    "65f1a2b3c4d5e6f789abcd12",
+    "65f1a2b3c4d5e6f789abcd34"
+  ],
+  "reason": "Policy violation"
+}
+```
+
+---
+
+# ⚠️ Error Responses
+
+### Unauthorized
+
+```json
+{
+  "success": false,
+  "message": "Unauthorized"
+}
+```
+
+### Invalid Request
+
+```json
+{
+  "success": false,
+  "error": "Invalid request"
+}
+```
+
+---
+
+# 🚀 Notes
+
+* All delete operations are **soft deletes**
+* Audit logs are maintained for every action
+* Bulk operations support up to recommended limits (e.g., 100 items)
+* Use pagination for large datasets
+
+---
+
+# 📦 Related Models
+
+* User
+* Provider
+* DeleteRequest
+* AuditLog
+* Booking
+* Payment
+* Review
+
+---
+
+# 🔥 Summary
+
+This system supports:
+
+* Admin-controlled account deletion
+* Search & filtering
+* Bulk operations
+* Dashboard analytics
+* Audit logging
+* Production-grade scalability
+
+---
+
