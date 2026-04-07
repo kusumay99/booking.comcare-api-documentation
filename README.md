@@ -161,7 +161,8 @@ Request Body
 
 ```json
 {
-    "providerId": "3897"
+    "providerId": "3897",
+    "reason":"i quit"
 }
 
 Success Response
@@ -2388,6 +2389,223 @@ POST /delete/bulk-reject
   "error": "Invalid request"
 }
 ```
+# 🔄 Admin Reactivate Account API
+
+---
+
+## 🌐 Endpoint
+
+```http
+POST /admin/reactivate-account
+```
+
+---
+
+## 🔐 Authentication
+
+This is a protected admin API.
+
+### Headers
+
+```http
+Authorization: Bearer <ADMIN_TOKEN>
+Content-Type: application/json
+```
+
+---
+
+## 📌 Description
+
+This API allows an **admin to restore (reactivate)** a previously deleted or deactivated account.
+
+It supports both:
+
+* 👤 User accounts
+* 🧑‍⚕️ Provider accounts
+
+Once reactivated:
+
+* The user/provider can **log in normally**
+* Account status is restored to active
+
+---
+
+## 📥 Request Body
+
+### Reactivate User
+
+```json
+{
+  "userId": 101
+}
+```
+
+---
+
+### Reactivate Provider
+
+```json
+{
+  "providerId": 501
+}
+```
+
+---
+
+## ⚠️ Validation Rules
+
+* Either `userId` or `providerId` is required
+* Both cannot be empty
+* The account must exist
+* Account should not already be active
+
+---
+
+## 📤 Success Response
+
+```json
+{
+  "success": true,
+  "message": "user account reactivated successfully",
+  "data": {
+    "id": "65f1a2b3c4d5e6f789abcd12",
+    "email": "user@example.com",
+    "type": "user"
+  }
+}
+```
+
+---
+
+## ❌ Error Responses
+
+### Missing ID
+
+```json
+{
+  "success": false,
+  "error": "userId or providerId is required"
+}
+```
+
+---
+
+### Account Not Found
+
+```json
+{
+  "success": false,
+  "error": "Account not found"
+}
+```
+
+---
+
+### Already Active
+
+```json
+{
+  "success": false,
+  "error": "Account is already active"
+}
+```
+
+---
+
+### Server Error
+
+```json
+{
+  "success": false,
+  "error": "Internal server error"
+}
+```
+
+---
+
+## 🔄 What Happens Internally
+
+When this API is called:
+
+```js
+isDeleted = false
+isActive = true
+deletedAt = null
+deletionRequestedAt = null
+```
+
+---
+
+## 🧾 Audit Logging
+
+An audit log entry is created:
+
+```json
+{
+  "action": "ACCOUNT_RESTORED",
+  "performedBy": "admin"
+}
+```
+
+---
+
+## 🔁 Delete Request Update (Optional)
+
+All related delete requests are updated:
+
+```json
+{
+  "status": "restored"
+}
+```
+
+---
+
+## 🔐 Login Behavior After Reactivation
+
+After successful reactivation:
+
+* ✅ User/Provider can log in
+* ❌ No longer blocked by `isDeleted` or `isActive`
+
+---
+
+## 🧪 Postman Example
+
+### Request
+
+```http
+POST http://localhost:5000/api/admin/reactivate-account
+```
+
+### Body
+
+```json
+{
+  "userId": 101
+}
+```
+
+---
+
+## 🚀 Notes
+
+* This is a **soft restore**, not a new account creation
+* All previous data (bookings, payments, etc.) remains intact
+* Recommended to notify users via email or push notification
+
+---
+
+## 🔥 Summary
+
+This API enables:
+
+* Admin-controlled account recovery
+* Full lifecycle management
+* Secure reactivation flow
+* Audit tracking for compliance
+
+---
 
 ---
 
