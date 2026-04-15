@@ -2585,6 +2585,608 @@ POST http://localhost:5000/api/admin/reactivate-account
   "userId": 101
 }
 ```
+# 📘 NBC Nursing Booking Care - Booking APIs Documentation
+
+---
+
+## 🌐 Base URL
+
+```
+http://localhost:5000/api
+```
+
+---
+
+## 🔐 Authentication
+
+All APIs require:
+
+```
+Authorization: Bearer <TOKEN>
+Content-Type: application/json
+```
+
+---
+
+# 📅 1. Upcoming Bookings
+
+## ➤ Endpoint
+
+```
+GET /booking/upcoming
+```
+
+---
+
+## 📌 Description
+
+Returns upcoming bookings for:
+
+* 👤 User → their bookings
+* 🧑‍⚕️ Provider → assigned bookings
+
+---
+
+## 🔎 Query Params
+
+| Param | Type   | Description    |
+| ----- | ------ | -------------- |
+| page  | Number | Page number    |
+| limit | Number | Items per page |
+
+---
+
+## ✅ Example
+
+```
+GET /booking/upcoming?page=1&limit=10
+```
+
+---
+
+## 📤 Response
+
+```json
+{
+  "success": true,
+  "pagination": {
+    "totalCount": 25,
+    "currentPage": 1,
+    "totalPages": 3
+  },
+  "data": [
+    {
+      "bookingId": 123,
+      "status": "confirmed",
+
+      "userDetails": {
+        "name": "Rahul",
+        "email": "rahul@gmail.com"
+      },
+
+      "providerDetails": {
+        "name": "Nurse Priya",
+        "location": "Bangalore"
+      }
+    }
+  ]
+}
+```
+
+---
+
+# 📄 2. Booking Details (User / Provider)
+
+## ➤ Endpoint
+
+```
+POST /booking/details
+```
+
+---
+
+## 📌 Description
+
+Returns **full booking details** including:
+
+* Full user info
+* Full provider info
+
+---
+
+## 📥 Request Body
+
+```json
+{
+  "bookingId": 123
+}
+```
+
+---
+
+## 🔐 Access Rules
+
+* User → can access only their booking
+* Provider → can access only assigned booking
+
+---
+
+## 📤 Response
+
+```json
+{
+  "success": true,
+  "data": {
+    "bookingId": 123,
+
+    "userDetails": {
+      "userId": 101,
+      "name": "Rahul",
+      "email": "rahul@gmail.com",
+      "phone": "9999999999"
+    },
+
+    "providerDetails": {
+      "providerId": 501,
+      "name": "Nurse Priya",
+      "email": "priya@gmail.com",
+      "phone": "8888888888"
+    }
+  }
+}
+```
+
+---
+
+# 🧑‍💼 3. Admin Booking Details
+
+## ➤ Endpoint
+
+```
+POST /admin/bookings/details
+```
+
+---
+
+## 📌 Description
+
+Admin version with **complete user + provider info in single response**
+
+---
+
+## 📥 Request Body
+
+```json
+{
+  "bookingId": 123
+}
+```
+
+---
+
+## 📤 Response
+
+```json
+{
+  "success": true,
+  "data": {
+    "bookingId": 123,
+
+    "userName": "Rahul",
+    "userEmail": "rahul@gmail.com",
+    "userPhone": "9999999999",
+
+    "providerName": "Nurse Priya",
+    "providerEmail": "priya@gmail.com",
+    "providerPhone": "8888888888"
+  }
+}
+```
+
+---
+
+# 📚 4. Booking History (Unified API)
+
+## ➤ Endpoint
+
+```
+GET /booking/history
+```
+
+---
+
+## 📌 Description
+
+Single API for:
+
+* 👤 User history
+* 🧑‍⚕️ Provider history
+
+Role is determined from token.
+
+---
+
+## 🔎 Query Params
+
+| Param | Type   | Description    |
+| ----- | ------ | -------------- |
+| page  | Number | Page number    |
+| limit | Number | Items per page |
+
+---
+
+## 📤 Response
+
+```json
+{
+  "success": true,
+  "pagination": {
+    "totalCount": 20,
+    "currentPage": 1,
+    "totalPages": 2
+  },
+  "data": [
+    {
+      "bookingId": 123,
+      "status": "completed",
+
+      "userDetails": {
+        "name": "Rahul",
+        "email": "rahul@gmail.com"
+      },
+
+      "providerDetails": {
+        "name": "Nurse Priya",
+        "email": "priya@gmail.com"
+      }
+    }
+  ]
+}
+```
+
+---
+
+# ⚠️ Error Responses
+
+## Unauthorized
+
+```json
+{
+  "success": false,
+  "error": "Unauthorized"
+}
+```
+
+---
+
+## Not Found
+
+```json
+{
+  "success": false,
+  "error": "Booking not found"
+}
+```
+
+---
+
+## Validation Error
+
+```json
+{
+  "success": false,
+  "error": "bookingId is required"
+}
+```
+
+---
+
+# 🚀 Notes
+
+* All APIs support **JWT authentication**
+* Booking data includes **embedded relational info**
+* Pagination is implemented for scalability
+* Sensitive fields (passwords) are excluded automatically
+
+---
+
+# 🔥 Summary
+
+These APIs provide:
+
+* 📅 Upcoming bookings
+* 📄 Full booking details
+* 📊 Booking history (user + provider unified)
+* 🧑‍💼 Admin-level visibility
+
+---
+# 📘 NBC Nursing Booking Care -updated Booking APIs 
+
+---
+
+## 🔐 Authentication
+
+All APIs require:
+
+```
+Authorization: Bearer <TOKEN>
+Content-Type: application/json
+```
+
+---
+
+# 📅 1. Upcoming Bookings
+
+## ➤ Endpoint
+
+```
+GET /booking/upcoming
+```
+
+---
+
+## 📌 Description
+
+Returns upcoming bookings for:
+
+* 👤 User → their bookings
+* 🧑‍⚕️ Provider → assigned bookings
+
+---
+
+## 🔎 Query Params
+
+| Param | Type   | Description    |
+| ----- | ------ | -------------- |
+| page  | Number | Page number    |
+| limit | Number | Items per page |
+
+---
+
+## ✅ Example
+
+```
+GET /booking/upcoming?page=1&limit=10
+```
+
+---
+
+## 📤 Response
+
+```json
+{
+  "success": true,
+  "pagination": {
+    "totalCount": 25,
+    "currentPage": 1,
+    "totalPages": 3
+  },
+  "data": [
+    {
+      "bookingId": 123,
+      "status": "confirmed",
+
+      "userDetails": {
+        "name": "Rahul",
+        "email": "rahul@gmail.com"
+      },
+
+      "providerDetails": {
+        "name": "Nurse Priya",
+        "location": "Bangalore"
+      }
+    }
+  ]
+}
+```
+
+---
+
+# 📄 2. Booking Details (User / Provider)
+
+## ➤ Endpoint
+
+```
+POST /booking/details
+```
+
+---
+
+## 📌 Description
+
+Returns **full booking details** including:
+
+* Full user info
+* Full provider info
+
+---
+
+## 📥 Request Body
+
+```json
+{
+  "bookingId": 123
+}
+```
+
+---
+
+## 🔐 Access Rules
+
+* User → can access only their booking
+* Provider → can access only assigned booking
+
+---
+
+## 📤 Response
+
+```json
+{
+  "success": true,
+  "data": {
+    "bookingId": 123,
+
+    "userDetails": {
+      "userId": 101,
+      "name": "Rahul",
+      "email": "rahul@gmail.com",
+      "phone": "9999999999"
+    },
+
+    "providerDetails": {
+      "providerId": 501,
+      "name": "Nurse Priya",
+      "email": "priya@gmail.com",
+      "phone": "8888888888"
+    }
+  }
+}
+```
+
+---
+
+# 🧑‍💼 3. Admin Booking Details
+
+## ➤ Endpoint
+
+```
+POST /admin/bookings/details
+```
+
+---
+
+## 📌 Description
+
+Admin version with **complete user + provider info in single response**
+
+---
+
+## 📥 Request Body
+
+```json
+{
+  "bookingId": 123
+}
+```
+
+---
+
+## 📤 Response
+
+```json
+{
+  "success": true,
+  "data": {
+    "bookingId": 123,
+
+    "userName": "Rahul",
+    "userEmail": "rahul@gmail.com",
+    "userPhone": "9999999999",
+
+    "providerName": "Nurse Priya",
+    "providerEmail": "priya@gmail.com",
+    "providerPhone": "8888888888"
+  }
+}
+```
+
+---
+
+# 📚 4. Booking History (Unified API)
+
+## ➤ Endpoint
+
+```
+GET /booking/history
+```
+
+---
+
+## 📌 Description
+
+Single API for:
+
+* 👤 User history
+* 🧑‍⚕️ Provider history
+
+Role is determined from token.
+
+---
+
+## 🔎 Query Params
+
+| Param | Type   | Description    |
+| ----- | ------ | -------------- |
+| page  | Number | Page number    |
+| limit | Number | Items per page |
+
+---
+
+## 📤 Response
+
+```json
+{
+  "success": true,
+  "pagination": {
+    "totalCount": 20,
+    "currentPage": 1,
+    "totalPages": 2
+  },
+  "data": [
+    {
+      "bookingId": 123,
+      "status": "completed",
+
+      "userDetails": {
+        "name": "Rahul",
+        "email": "rahul@gmail.com"
+      },
+
+      "providerDetails": {
+        "name": "Nurse Priya",
+        "email": "priya@gmail.com"
+      }
+    }
+  ]
+}
+```
+
+---
+
+# ⚠️ Error Responses
+
+## Unauthorized
+
+```json
+{
+  "success": false,
+  "error": "Unauthorized"
+}
+```
+
+---
+
+## Not Found
+
+```json
+{
+  "success": false,
+  "error": "Booking not found"
+}
+```
+
+---
+
+## Validation Error
+
+```json
+{
+  "success": false,
+  "error": "bookingId is required"
+}
+```
+
+---
 
 ---
 
