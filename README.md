@@ -3188,6 +3188,283 @@ Role is determined from token.
 
 ---
 
+
+# 🛠 Admin & Provider API Documentation
+
+## 🌐 Base URL
+
+```
+http://localhost:5000/api
+```
+
+---
+
+# 🔐 Authentication
+
+All endpoints require:
+
+```
+Authorization: Bearer <ACCESS_TOKEN>
+Content-Type: application/json
+```
+
+---
+
+# 📦 1. Admin Bookings API
+
+## ✅ POST `/admin/bookings/list`
+
+### Description
+
+Fetch bookings with **server-side filtering, search, and pagination**.
+
+---
+
+### 📥 Request Body
+
+```json
+{
+  "status": "pending",
+  "dateFrom": "2026-04-01",
+  "dateTo": "2026-04-30",
+  "search": "john",
+  "page": 1,
+  "limit": 10
+}
+```
+
+---
+
+### 🔍 Filters
+
+| Field    | Type   | Description                                 |
+| -------- | ------ | ------------------------------------------- |
+| status   | string | pending / accepted / completed / cancelled  |
+| dateFrom | date   | Start date (appointmentDate)                |
+| dateTo   | date   | End date (appointmentDate)                  |
+| search   | string | bookingId, user name, provider name, emails |
+| page     | number | Page number                                 |
+| limit    | number | Items per page                              |
+
+---
+
+### 📤 Response
+
+```json
+{
+  "success": true,
+  "page": 1,
+  "total": 120,
+  "bookings": [
+    {
+      "bookingId": 101,
+      "status": "pending",
+      "userName": "John",
+      "providerName": "Care Service"
+    }
+  ]
+}
+```
+
+---
+
+# ⭐ 2. Admin Reviews API
+
+## ✅ POST `/admin/reviews/list`
+
+### Description
+
+Single endpoint for **all review filtering, search, and pagination**.
+
+---
+
+### 📥 Request Body
+
+```json
+{
+  "filterType": "low-rating",
+  "providerId": 101,
+  "userId": 201,
+  "search": "bad service",
+  "page": 1,
+  "limit": 10
+}
+```
+
+---
+
+### 🎯 filterType Options
+
+| Value      | Description      |
+| ---------- | ---------------- |
+| all        | All reviews      |
+| flagged    | Flagged reviews  |
+| low-rating | rating < 3       |
+| pending    | Pending reviews  |
+| approved   | Approved reviews |
+| rejected   | Rejected reviews |
+
+---
+
+### 📤 Response
+
+```json
+{
+  "success": true,
+  "page": 1,
+  "total": 45,
+  "reviews": [
+    {
+      "reviewId": 1,
+      "rating": 2,
+      "comment": "Bad service",
+      "status": "approved"
+    }
+  ]
+}
+```
+
+---
+
+# 📊 3. Admin Dashboard Summary
+
+## ✅ GET `/admin/dashboard-summary`
+
+### Description
+
+Returns **all dashboard stats in a single API call**.
+
+---
+
+### 📥 Request
+
+No body required
+
+---
+
+### 📤 Response
+
+```json
+{
+  "success": true,
+  "data": {
+    "providers": {
+      "total": 50,
+      "verified": 30,
+      "pending": 15,
+      "blocked": 5
+    },
+    "bookings": {
+      "total": 200,
+      "pending": 40,
+      "accepted": 60,
+      "completed": 80,
+      "cancelled": 20
+    },
+    "reviews": {
+      "flagged": 10,
+      "lowRating": 15
+    },
+    "deleteRequests": {
+      "pending": 5,
+      "approvedThisMonth": 8,
+      "rejectedThisMonth": 2
+    }
+  }
+}
+```
+
+---
+
+# 👨‍⚕️ 4. Provider Profile API (with Reviews Summary)
+
+## ✅ POST `/provider/profile/providerid`
+
+### Description
+
+Fetch provider profile along with **aggregated review insights**.
+
+---
+
+### 📥 Request Body
+
+```json
+{
+  "providerId": 101
+}
+```
+
+---
+
+### 📤 Response
+
+```json
+{
+  "success": true,
+  "provider": {
+    "providerId": 101,
+    "name": "Care Service"
+  },
+  "reviewsSummary": {
+    "averageRating": 4.2,
+    "totalReviews": 25,
+    "ratingDistribution": {
+      "1": 1,
+      "2": 2,
+      "3": 5,
+      "4": 10,
+      "5": 7
+    },
+    "recentReviews": [
+      {
+        "reviewId": 1,
+        "rating": 5,
+        "comment": "Excellent service"
+      }
+    ]
+  }
+}
+```
+
+---
+
+# ⚡ Performance Notes
+
+* All filtering moved to backend (no client-side load)
+* Aggregation used for reviews (O(1) memory)
+* Pagination supported across endpoints
+
+---
+
+# ⚠️ Common Errors
+
+| Status | Reason                  |
+| ------ | ----------------------- |
+| 401    | Missing/invalid token   |
+| 400    | Missing required fields |
+| 404    | Resource not found      |
+
+---
+
+# 🚀 Recommended Indexes
+
+```js
+db.reviews.createIndex({ providerId: 1, status: 1, createdAt: -1 })
+db.bookings.createIndex({ status: 1, appointmentDate: 1 })
+```
+
+---
+
+# ✅ Summary
+
+* ✔ Server-side filtering implemented
+* ✔ Pagination added
+* ✔ Dashboard optimized (4 calls → 1)
+* ✔ Reviews consolidated into single API
+* ✔ Provider profile enriched with review analytics
+
+---
+
 ---
 
 ## 🚀 Notes
